@@ -362,7 +362,7 @@ html.kb body{padding-bottom:60vh}
 
     <section class="card du-card" id="duLobby">
       <h2 class="du-title">1'e 1 Düello</h2>
-      <p class="muted">3-2-1 geri sayımı sırasında bir takım seç. Rakip de kendi takımını seçer. Sonra iki takımın ortak oyuncusunu ilk doğru yazan turu alır. Yanlış cevap 1,5 saniye ceza getirir.</p>
+      <p class="muted">5 saniyelik geri sayımda bir takım seç. Rakip de kendi takımını seçer. Sonra iki takımın ortak oyuncusunu ilk doğru yazan turu alır. Yanlış cevap 1,5 saniye ceza getirir.</p>
       <p class="muted small">Oyun yayına çıkana kadar rakibin bir bot. Çevrim içi rakipler daha sonra gelecek.</p>
       <button class="primary big" id="duStart">Maçı başlat</button>
     </section>
@@ -1409,7 +1409,7 @@ html.kb body{padding-bottom:60vh}
       return "<button type='button' class='du-t' data-c='" + c + "' aria-pressed='false'>" + crest(c) + "<span>" + esc(T[c]) + "</span></button>";
     }).join("");
     $("duPickMsg").textContent = "Takımını seç!";
-    var n = 3; $("duCount").textContent = n; $("duCount").classList.remove("go");
+    var n = 5; $("duCount").textContent = n; $("duCount").classList.remove("go");
     tick = setInterval(function () {
       n--;
       if (n > 0) { $("duCount").textContent = n; return; }
@@ -1469,11 +1469,11 @@ html.kb body{padding-bottom:60vh}
     if (r.status === "surname_none") { h.textContent = "Bu soyad bu ikili için tutmuyor. Adla birlikte yaz."; return; }
     if (r.status === "suggest") { h.textContent = "Şunu mu demek istedin: " + db.byId[r.id].n + "?"; return; }
     // yanlış ya da tanınmayan: ceza
-    locked = true; $("duIn").readOnly = true; $("duOk").disabled = true;
+    locked = true; $("duOk").disabled = true; $("duIn").value = "";
     h.textContent = "❌ " + (r.status === "wrong" ? "Bu oyuncu ikisinde birden oynamadı." : "Bu isim veride yok.") + " 1,5 sn ceza…";
     later(function () {
       if (ph !== "race") return;
-      locked = false; $("duIn").readOnly = false; $("duOk").disabled = false; $("duIn").value = ""; h.hidden = true;
+      locked = false; $("duOk").disabled = false; h.hidden = true;
       try { $("duIn").focus({ preventScroll: true }); } catch (e2) {}
     }, PENALTY);
   }
@@ -1595,8 +1595,8 @@ html.kb body{padding-bottom:60vh}
     }, 100);
     try { $("chIn").focus({ preventScroll: true }); } catch (e) {}
   }
-  function lock() { $("chIn").readOnly = true; $("chOk").disabled = true; }
-  function unlock() { clearTimeout(lockT); $("chIn").readOnly = false; $("chOk").disabled = false; }
+  function lock() { $("chOk").disabled = true; $("chIn").value = ""; }
+  function unlock() { clearTimeout(lockT); $("chOk").disabled = false; }
   function submit(e) {
     e.preventDefault();
     if (!run || $("chOk").disabled) return;
@@ -1610,7 +1610,7 @@ html.kb body{padding-bottom:60vh}
     lock();
     h.textContent = "❌ " + (r.status === "wrong" ? "Bu oyuncu ikisinde birden oynamadı." : "Bu isim veride yok.") + " 1,5 sn ceza…";
     if (tg && tg.HapticFeedback) tg.HapticFeedback.notificationOccurred("error");
-    lockT = setTimeout(function () { unlock(); $("chIn").value = ""; h.hidden = true; try { $("chIn").focus({ preventScroll: true }); } catch (e2) {} }, PENALTY);
+    lockT = setTimeout(function () { unlock(); h.hidden = true; try { $("chIn").focus({ preventScroll: true }); } catch (e2) {} }, PENALTY);
   }
   function endRound(ok, p, secs) {
     clearInterval(tick); tick = null; unlock();
@@ -1690,7 +1690,7 @@ html.kb body{padding-bottom:60vh}
 
   var QUIZ_N = 10, QUIZ_T = 30000, QUIZ_CD = 3000, REVEAL = 5000;
   var XOX_T = 45000, XOX_MAXPASS = 8;
-  var DUEL_PICK = 3500, DUEL_T = 90000, DUEL_WIN = 3;
+  var DUEL_PICK = 5500, DUEL_T = 90000, DUEL_WIN = 3;
   var STALE = 35000, MAXP = 12;
 
   function create(hostId, name, code, now) {
@@ -2154,7 +2154,7 @@ html.kb body{padding-bottom:60vh}
     }).join("");
     document.querySelectorAll("#onHostCtl [data-m]").forEach(function (b) { b.setAttribute("aria-selected", String(b.dataset.m === mode)); });
     $("onModeHelp").textContent = mode === "quiz" ? "Herkes aynı 10 soruya yarışır. Hızlı doğru cevap daha çok puan getirir (500–1000)."
-      : (mode === "xox" ? "Oynayacak iki kişiyi seç (dokun). Diğerleri canlı izler. Yanlış cevapta sıra geçer, hamle başına 45 sn." : "Oynayacak iki kişiyi seç. 3-2-1'de ikisi takım seçer, ilk doğru cevap turu alır, ilk 3 kazanır.") +
+      : (mode === "xox" ? "Oynayacak iki kişiyi seç (dokun). Diğerleri canlı izler. Yanlış cevapta sıra geçer, hamle başına 45 sn." : "Oynayacak iki kişiyi seç. 5 saniyelik geri sayımda ikisi takım seçer, ilk doğru cevap turu alır, ilk 3 kazanır.") +
       (two && st.order.length < 2 ? " Önce bir arkadaşının odaya katılmasını bekle." : "");
     $("onGo").disabled = two && sel.length !== 2;
   }
@@ -2167,7 +2167,7 @@ html.kb body{padding-bottom:60vh}
     $("onFormFor").textContent = forTxt || ""; $("onFormFor").hidden = !forTxt;
     $("onPass").hidden = !pass;
     var locked = Date.now() < lockUntil;
-    $("onOk").disabled = locked; $("onIn").readOnly = locked;
+    $("onOk").disabled = locked;
     if (!locked && $("onHint").dataset.lock === "1") { $("onHint").hidden = true; $("onHint").dataset.lock = ""; }
   }
   function stage(sig, html) { if (sig !== sigStage) { sigStage = sig; $("onStage").innerHTML = html; } }
@@ -2242,7 +2242,7 @@ html.kb body{padding-bottom:60vh}
       stage("dp" + g.r + player + (myPick.team || ""), sb + "<div class='du-count' id='onBig'></div>" +
         (player ? "<div class='du-teams'>" + ORDER.map(function (c) { return "<button type='button' class='du-t' data-team='" + c + "' aria-pressed='" + (myPick.team === c) + "'>" + crest(c, true) + "<span>" + esc(T[c]) + "</span></button>"; }).join("") + "</div>"
                 : "<p class='prompt'>" + esc(nm(g.p[0])) + " ve " + esc(nm(g.p[1])) + " takım seçiyor…</p>"));
-      $("onBig").textContent = Math.min(3, Math.max(1, secs(g.dl - t)));
+      $("onBig").textContent = Math.min(5, Math.max(1, secs(g.dl - t)));
       setForm(false, "dp" + g.r);
       info("dpi", "");
     } else if (g.ph === "race") {
