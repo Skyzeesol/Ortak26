@@ -365,7 +365,7 @@ html.kb body{padding-bottom:60vh}
 
     <section class="card du-card" id="duLobby">
       <h2 class="du-title">1'e 1 Düello</h2>
-      <p class="muted">5 saniyelik geri sayımda bir takım seç. Rakip de kendi takımını seçer. Sonra iki takımın ortak oyuncusunu ilk doğru yazan turu alır. Yanlış cevap 1,5 saniye ceza getirir.</p>
+      <p class="muted">10 saniyelik geri sayımda bir takım seç. Rakip de kendi takımını seçer. Sonra iki takımın ortak oyuncusunu ilk doğru yazan turu alır. Yanlış cevap 1,5 saniye ceza getirir.</p>
       <p class="muted small">Oyun yayına çıkana kadar rakibin bir bot. Çevrim içi rakipler daha sonra gelecek.</p>
       <button class="primary big" id="duStart">Maçı başlat</button>
     </section>
@@ -1415,7 +1415,7 @@ html.kb body{padding-bottom:60vh}
       return "<button type='button' class='du-t" + (x ? " used" : "") + "' data-c='" + c + "' aria-pressed='false'" + (x ? " disabled" : "") + ">" + crest(c) + "<span>" + esc(T[c]) + "</span>" + (x ? "<small>oynandı</small>" : "") + "</button>";
     }).join("");
     $("duPickMsg").textContent = "Takımını seç!";
-    var n = 5; $("duCount").textContent = n; $("duCount").classList.remove("go");
+    var n = 10; $("duCount").textContent = n; $("duCount").classList.remove("go");
     tick = setInterval(function () {
       n--;
       if (n > 0) { $("duCount").textContent = n; return; }
@@ -1698,7 +1698,7 @@ html.kb body{padding-bottom:60vh}
 
   var QUIZ_N = 10, QUIZ_T = 30000, QUIZ_CD = 3000, REVEAL = 5000;
   var XOX_T = 45000, XOX_MAXPASS = 8;
-  var DUEL_PICK = 5500, DUEL_T = 90000, DUEL_WIN = 3;
+  var DUEL_PICK = 10500, DUEL_T = 90000, DUEL_WIN = 3;
   var STALE = 35000, MAXP = 12;
 
   function create(hostId, name, code, now) {
@@ -2165,7 +2165,7 @@ html.kb body{padding-bottom:60vh}
     }).join("");
     document.querySelectorAll("#onHostCtl [data-m]").forEach(function (b) { b.setAttribute("aria-selected", String(b.dataset.m === mode)); });
     $("onModeHelp").textContent = mode === "quiz" ? "Herkes aynı 10 soruya yarışır. Hızlı doğru cevap daha çok puan getirir (500–1000)."
-      : (mode === "xox" ? "Oynayacak iki kişiyi seç (dokun). Diğerleri canlı izler. Yanlış cevapta sıra geçer, hamle başına 45 sn." : "Oynayacak iki kişiyi seç. 5 saniyelik geri sayımda ikisi takım seçer, ilk doğru cevap turu alır, ilk 3 kazanır.") +
+      : (mode === "xox" ? "Oynayacak iki kişiyi seç (dokun). Diğerleri canlı izler. Yanlış cevapta sıra geçer, hamle başına 45 sn." : "Oynayacak iki kişiyi seç. 10 saniyelik geri sayımda ikisi takım seçer, ilk doğru cevap turu alır, ilk 3 kazanır.") +
       (two && st.order.length < 2 ? " Önce bir arkadaşının odaya katılmasını bekle." : "");
     $("onGo").disabled = two && sel.length !== 2;
   }
@@ -2253,7 +2253,7 @@ html.kb body{padding-bottom:60vh}
       stage("dp" + g.r + player + (myPick.team || ""), sb + "<div class='du-count' id='onBig'></div>" +
         (player ? "<div class='du-teams'>" + ORDER.map(function (c) { var used = (g.used || [[], []])[k].indexOf(c) >= 0; return "<button type='button' class='du-t" + (used ? " used" : "") + "' data-team='" + c + "' aria-pressed='" + (myPick.team === c) + "'" + (used ? " disabled" : "") + ">" + crest(c, true) + "<span>" + esc(T[c]) + "</span>" + (used ? "<small>oynandı</small>" : "") + "</button>"; }).join("") + "</div>"
                 : "<p class='prompt'>" + esc(nm(g.p[0])) + " ve " + esc(nm(g.p[1])) + " takım seçiyor…</p>"));
-      $("onBig").textContent = Math.min(5, Math.max(1, secs(g.dl - t)));
+      $("onBig").textContent = Math.min(10, Math.max(1, secs(g.dl - t)));
       setForm(false, "dp" + g.r);
       info("dpi", "");
     } else if (g.ph === "race") {
