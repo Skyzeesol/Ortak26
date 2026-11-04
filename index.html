@@ -251,6 +251,9 @@ button.on-p.sel{border-color:var(--lime);background:rgba(186,245,118,.10)}
 #onStage .du-count{margin:4px 0}
 @media (max-width:420px){.on-codebox b{font-size:24px;letter-spacing:3px}}
 #onHostCtl .seg{flex:none}
+/* klavye açıkken sayfa yukarı kayabilsin diye altta boşluk */
+html.kb body{padding-bottom:60vh}
+.ac-list li{min-height:44px;display:flex;align-items:center}
 </style>
 <div class="shell">
   <header class="top">
@@ -968,7 +971,7 @@ button.on-p.sel{border-color:var(--lime);background:rgba(186,245,118,.10)}
     var items = [], idx = -1;
     function close() { list.hidden = true; input.setAttribute("aria-expanded", "false"); input.removeAttribute("aria-activedescendant"); idx = -1; }
     function render() {
-      items = input.readOnly ? [] : db.suggestNames(input.value, 6);
+      items = input.readOnly ? [] : db.suggestNames(input.value, window.matchMedia && matchMedia("(pointer:coarse)").matches ? 4 : 6);
       var q = db.norm(input.value);
       if (!items.length || (items.length === 1 && db.norm(items[0].n) === q)) { close(); return; }
       list.innerHTML = items.map(function (p, i) {
@@ -976,6 +979,18 @@ button.on-p.sel{border-color:var(--lime);background:rgba(186,245,118,.10)}
       }).join("");
       list.hidden = false; input.setAttribute("aria-expanded", "true");
       if (idx >= 0) input.setAttribute("aria-activedescendant", list.id + "-" + idx);
+      keepVisible();
+    }
+    // Telefonda klavye açıkken giriş kutusunu yukarı kaydır, öneriler klavyenin üstünde kalsın
+    function keepVisible() {
+      if (document.activeElement !== input) return;
+      var vv = window.visualViewport, ih = window.innerHeight;
+      var visTop = vv ? vv.offsetTop : 0, visBottom = vv ? vv.offsetTop + vv.height : ih;
+      var touch = window.matchMedia && matchMedia("(pointer:coarse)").matches;
+      if (touch && (!vv || vv.height > ih * 0.9)) visBottom = Math.min(visBottom, ih * 0.55); // klavye görünüme yansımıyorsa (bazı Telegram sürümleri) tahmin et
+      var it = input.getBoundingClientRect(), lb = list.hidden ? it.bottom : list.getBoundingClientRect().bottom;
+      var d = Math.min(lb + 10 - visBottom, it.top - visTop - 12);
+      if (d > 4) window.scrollBy(0, d);
     }
     function pick(p) { input.value = p.n; close(); if (onPick) onPick(p); }
     input.addEventListener("input", function () { idx = -1; render(); });
@@ -988,7 +1003,9 @@ button.on-p.sel{border-color:var(--lime);background:rgba(186,245,118,.10)}
     });
     list.addEventListener("mousedown", function (e) { e.preventDefault(); });
     list.addEventListener("click", function (e) { var li = e.target.closest("li"); if (li) pick(items[+li.dataset.i]); });
-    input.addEventListener("blur", function () { setTimeout(close, 120); });
+    input.addEventListener("blur", function () { setTimeout(function () { close(); if (document.activeElement && document.activeElement.getAttribute("role") === "combobox") return; document.documentElement.classList.remove("kb"); }, 120); });
+    input.addEventListener("focus", function () { document.documentElement.classList.add("kb"); setTimeout(keepVisible, 350); });
+    if (window.visualViewport) window.visualViewport.addEventListener("resize", function () { setTimeout(keepVisible, 50); });
     return { close: close };
   }
   var acMain = attachAC($("answerIn"), $("answerList"), function () { $("hint").hidden = true; });
@@ -1659,7 +1676,7 @@ button.on-p.sel{border-color:var(--lime);background:rgba(186,245,118,.10)}
     $("duLobby").parentNode.insertBefore($("chLobby"), $("duLobby"));
     if (!/^#duel/.test(location.hash)) location.hash = "#duel";
   }
-  if (tg) { try { tg.ready(); tg.expand(); tg.setHeaderColor("#0a1712"); tg.setBackgroundColor("#0a1712"); } catch (e) {} }
+  if (tg) { try { tg.ready(); tg.expand(); if (tg.disableVerticalSwipes) tg.disableVerticalSwipes(); tg.setHeaderColor("#0a1712"); tg.setBackgroundColor("#0a1712"); } catch (e) {} }
   lobby();
   window.O26CH = { busy: function () { return !!run; } };
 })();
