@@ -92,7 +92,7 @@ button:disabled{opacity:.45;cursor:default}
 .choices button:disabled{opacity:1}
 
 /* sayfa sekmeleri */
-.pages{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;background:var(--panel);border:1px solid var(--edge);border-radius:14px;padding:4px}
+.pages{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;background:var(--panel);border:1px solid var(--edge);border-radius:14px;padding:4px}
 .pages a{text-align:center;padding:11px 8px;border-radius:10px;font-weight:800;color:var(--muted);text-decoration:none;font-family:var(--display);font-size:19px;letter-spacing:.4px}
 .pages a[aria-current="page"]{background:var(--txt);color:var(--bg)}
 #pageQuiz,#pageXox{display:flex;flex-direction:column;gap:14px}
@@ -197,6 +197,60 @@ button:disabled{opacity:.45;cursor:default}
 .ch-rounds li{display:flex;flex-direction:column;gap:2px;padding:10px 12px;border-radius:12px;background:var(--panel2);border:1px solid var(--edge)}
 .ch-rounds li.ok{border-color:rgba(186,245,118,.45)}.ch-rounds li.bad{border-color:rgba(255,122,127,.45)}
 .ch-rounds small{color:var(--muted)}
+
+/* Online */
+.pages a.on::after{content:"";display:inline-block;width:7px;height:7px;border-radius:50%;background:var(--lime);margin-left:5px;vertical-align:middle;box-shadow:0 0 0 3px rgba(186,245,118,.25)}
+.on-lbl{font-weight:800;font-size:13px;color:var(--muted);margin-bottom:-8px}
+#onName,#onCode{width:100%;box-sizing:border-box;background:var(--bg);border:1px solid var(--edge);border-radius:14px;padding:13px 14px;color:var(--txt);font-size:17px;min-height:50px}
+.on-join{display:grid;grid-template-columns:1fr auto;gap:8px}
+#onCode{font-family:var(--display);font-weight:800;letter-spacing:6px;text-transform:uppercase;text-align:center;font-size:24px}
+.on-head{grid-template-columns:auto 1fr auto}
+.on-codebox small{display:block;font-size:10.5px;letter-spacing:1.2px;color:var(--muted);font-weight:800}
+.on-codebox b{font-family:var(--display);font-weight:800;font-size:30px;letter-spacing:4px;color:var(--lime);line-height:1}
+.on-head .xo-turn{text-align:center;font-size:13px}
+.on-h{margin:0;font-size:15px;font-weight:800}
+.on-players{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:6px}
+.on-p{display:flex;align-items:center;gap:10px;width:100%;box-sizing:border-box;padding:9px 12px;border-radius:14px;border:1.5px solid var(--edge);background:var(--panel2);color:var(--txt);text-align:left;min-height:50px;font-size:15px}
+button.on-p.sel{border-color:var(--lime);background:rgba(186,245,118,.10)}
+.on-av{width:30px;height:30px;border-radius:50%;display:grid;place-items:center;background:var(--bg);border:1px solid var(--edge);font-weight:800;flex:none}
+.on-p b{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.on-crown{font-size:15px}
+.on-slot{font-family:var(--display);font-weight:800;font-size:13px;padding:3px 8px;border-radius:999px;background:var(--lime);color:var(--ink)}
+.on-slot.s1{background:var(--red);color:#2a0a0c}
+#onHostCtl{display:flex;flex-direction:column;gap:10px}
+#onGo:disabled,#onOk:disabled{opacity:.45}
+.on-leave{align-self:center;margin-top:4px}
+.ghost.danger{color:var(--red);border-color:rgba(255,122,127,.4)}
+#onForm{display:flex;flex-direction:column;gap:10px}
+#onForm .row button{flex:1}
+#onFormFor{margin:0;font-weight:800;color:var(--txt)}
+.on-chips{display:flex;flex-wrap:wrap;gap:6px}
+.on-chip{padding:5px 10px;border-radius:999px;border:1px solid var(--edge);font-size:13px;font-weight:700;color:var(--muted)}
+.on-chip.ok{border-color:var(--lime);color:var(--lime)}.on-chip.pass{border-color:var(--red);color:var(--red)}
+.on-wait{margin:0;font-weight:700;color:var(--mint);display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.on-round{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:5px}
+.on-round li{display:flex;justify-content:space-between;gap:10px;padding:8px 12px;border-radius:12px;background:var(--panel2);border:1px solid var(--edge);font-size:14px}
+.on-round li.ok{border-color:rgba(186,245,118,.45)}.on-round li.bad{border-color:rgba(255,122,127,.35)}
+.on-round small{color:var(--muted);text-align:right}
+.on-scores{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:5px}
+.on-scores li{display:grid;grid-template-columns:28px 1fr auto;align-items:center;gap:8px;padding:9px 12px;border-radius:12px;background:var(--panel2);border:1px solid var(--edge)}
+.on-scores li.me{border-color:var(--lime)}
+.on-scores li:first-child .rk{color:var(--gold)}
+.on-scores .rk{font-family:var(--display);font-weight:800;font-size:18px;color:var(--muted)}
+.on-scores .pts{font-family:var(--display);font-weight:800;font-size:20px;font-variant-numeric:tabular-nums}
+.on-final{text-align:center;color:var(--gold)}
+.on-xoxhead{display:flex;justify-content:space-between;gap:8px;margin-bottom:8px}
+.on-mk{padding:6px 10px;border-radius:999px;font-weight:800;font-size:13px;border:1.5px solid var(--edge);max-width:48%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.on-mk.a{color:var(--lime)}.on-mk.b{color:var(--red)}
+.on-mk.a.on{background:var(--lime);color:var(--ink);border-color:var(--lime)}.on-mk.b.on{background:var(--red);color:#2a0a0c;border-color:var(--red)}
+.cell.sel{border:2px solid var(--gold);box-shadow:0 0 0 3px rgba(255,200,80,.25)}
+.cell:disabled{cursor:default}
+.on-duelsc{display:flex;justify-content:space-between;align-items:center;gap:8px;font-weight:800;font-size:15px;margin-bottom:6px}
+.on-duelsc b{font-family:var(--display);font-size:28px;color:var(--lime);margin:0 4px}
+.on-verdict{margin:0;font-weight:800;font-size:17px}.on-verdict.ok{color:var(--lime)}
+#onStage .du-count{margin:4px 0}
+@media (max-width:420px){.on-codebox b{font-size:24px;letter-spacing:3px}}
+#onHostCtl .seg{flex:none}
 </style>
 <div class="shell">
   <header class="top">
@@ -205,9 +259,10 @@ button:disabled{opacity:.45;cursor:default}
   </header>
 
   <nav class="pages" aria-label="Oyunlar">
-    <a href="#quiz" id="tabQuiz" aria-current="page">Ortak Quiz</a>
-    <a href="#xox" id="tabXox">XOX Izgara</a>
+    <a href="#quiz" id="tabQuiz" aria-current="page">Quiz</a>
+    <a href="#xox" id="tabXox">XOX</a>
     <a href="#duel" id="tabDuel">Düello</a>
+    <a href="#online" id="tabOnline" class="live">Online</a>
   </nav>
 
   <div id="pageQuiz">
@@ -371,6 +426,67 @@ button:disabled{opacity:.45;cursor:default}
         <div id="duResBody"></div>
       </section>
     </section>
+  </div>
+
+  <div id="pageOnline" hidden>
+    <section class="card du-card" id="onStart">
+      <h2 class="du-title">Online oda</h2>
+      <p class="muted">Arkadaşlarınla aynı anda oyna. Biri oda kurar ve kodu gruba atar, diğerleri katılır. Odayı kuran Quiz, XOX ya da Düello'yu başlatır.</p>
+      <label class="on-lbl" for="onName">Adın</label>
+      <input id="onName" type="text" maxlength="16" autocomplete="nickname" placeholder="Adın">
+      <button class="primary big" id="onCreate">Oda kur</button>
+      <div class="on-join">
+        <label class="sr" for="onCode">Oda kodu</label>
+        <input id="onCode" type="text" maxlength="4" autocapitalize="characters" autocorrect="off" spellcheck="false" placeholder="KOD" inputmode="text">
+        <button class="ghost" id="onJoin">Odaya katıl</button>
+      </div>
+      <p class="hint" id="onErr" role="alert" hidden></p>
+      <p class="muted small">Bağlantı hesapsız, herkese açık bir mesaj aktarıcısı üzerinden kurulur. Oda kodunu bilen herkes katılabilir.</p>
+    </section>
+
+    <div id="onRoom" hidden>
+      <section class="xo-board on-head">
+        <div class="on-codebox"><small>ODA KODU</small><b id="onCodeBig">----</b></div>
+        <span class="xo-turn" id="onStatus" aria-live="polite"></span>
+        <button class="ghost" id="onInvite">Davet et</button>
+      </section>
+      <p class="hint" id="onNet" role="status" hidden></p>
+
+      <section class="card du-card" id="onLobby">
+        <h3 class="on-h">Odadakiler <span class="muted" id="onCount"></span></h3>
+        <ul class="on-players" id="onPlayers"></ul>
+        <div id="onHostCtl">
+          <div class="seg" role="tablist" aria-label="Oyun">
+            <button role="tab" data-m="quiz" aria-selected="true">Quiz</button>
+            <button role="tab" data-m="xox" aria-selected="false">XOX</button>
+            <button role="tab" data-m="duel" aria-selected="false">Düello</button>
+          </div>
+          <p class="muted small" id="onModeHelp"></p>
+          <button class="primary big" id="onGo">Başlat</button>
+        </div>
+        <p class="muted" id="onWait">Oda kurucusu oyunu seçiyor…</p>
+        <p class="hint" id="onMsg" hidden></p>
+      </section>
+
+      <section class="card du-card" id="onGame" hidden>
+        <div class="q-meta"><span class="tag" id="onTag"></span><span class="muted" id="onClock"></span></div>
+        <div id="onStage"></div>
+        <form id="onForm" autocomplete="off" hidden>
+          <p class="muted small" id="onFormFor"></p>
+          <div class="ac">
+            <label class="sr" for="onIn">Futbolcu adı</label>
+            <input id="onIn" type="text" autocapitalize="words" autocorrect="off" spellcheck="false" placeholder="Ortak oyuncuyu yaz…" enterkeyhint="done" role="combobox" aria-autocomplete="list" aria-expanded="false" aria-controls="onList">
+            <ul id="onList" class="ac-list" role="listbox" hidden></ul>
+          </div>
+          <div class="row"><button type="submit" class="primary" id="onOk">Gönder</button><button type="button" class="ghost" id="onPass">Pas</button></div>
+        </form>
+        <p class="hint" id="onHint" hidden></p>
+        <div id="onInfo"></div>
+        <div class="row" id="onHostEnd" hidden><button class="primary" id="onAgain">Tekrar oyna</button><button class="ghost" id="onToLobby">Lobiye dön</button></div>
+      </section>
+
+      <button class="ghost danger on-leave" id="onLeave">Odadan çık</button>
+    </div>
   </div>
 
   <div class="sheet-bg" id="sheetBg" hidden></div>
@@ -1026,8 +1142,9 @@ button:disabled{opacity:.45;cursor:default}
   window.O26UI = { db: db, DATA: DATA, T: T, esc: esc, setTeam: setTeam, COLORS: COLORS, lum: lum, contrast: contrast,
     attachAC: attachAC, answersHTML: answersHTML, fatal: fatal };
   function route() {
-    var h = location.hash === "#xox" ? "xox" : /^#duel/.test(location.hash) ? "duel" : "quiz";
-    $("pageQuiz").hidden = h !== "quiz"; $("pageXox").hidden = h !== "xox"; $("pageDuel").hidden = h !== "duel";
+    var h = location.hash === "#xox" ? "xox" : /^#duel/.test(location.hash) ? "duel" : /^#online/.test(location.hash) ? "online" : "quiz";
+    $("pageQuiz").hidden = h !== "quiz"; $("pageXox").hidden = h !== "xox"; $("pageDuel").hidden = h !== "duel"; $("pageOnline").hidden = h !== "online";
+    $("tabOnline").setAttribute("aria-current", h === "online" ? "page" : "false");
     $("tabQuiz").setAttribute("aria-current", h === "quiz" ? "page" : "false");
     $("tabXox").setAttribute("aria-current", h === "xox" ? "page" : "false");
     $("tabDuel").setAttribute("aria-current", h === "duel" ? "page" : "false");
@@ -1545,6 +1662,664 @@ button:disabled{opacity:.45;cursor:default}
   if (tg) { try { tg.ready(); tg.expand(); tg.setHeaderColor("#0a1712"); tg.setBackgroundColor("#0a1712"); } catch (e) {} }
   lobby();
   window.O26CH = { busy: function () { return !!run; } };
+})();
+</script>
+<script>/* Online oda: odayı kuranın (host) cihazında çalışan tek yetkili durum makinesi.
+   reduce(db, st, act, now, rnd) durumu yerinde değiştirir; yayınlanması gereken bir değişiklik olduysa true döner.
+   Tarayıcıda window.O26ON, Node'da module.exports. */
+(function (root) {
+  "use strict";
+  var O = typeof module !== "undefined" && module.exports ? require("./core.js") : root.O26;
+
+  var QUIZ_N = 10, QUIZ_T = 30000, QUIZ_CD = 3000, REVEAL = 5000;
+  var XOX_T = 45000, XOX_MAXPASS = 8;
+  var DUEL_PICK = 3500, DUEL_T = 90000, DUEL_WIN = 3;
+  var STALE = 35000, MAXP = 12;
+
+  function create(hostId, name, code, now) {
+    var st = { v: 1, code: code, host: hostId, at: now, seq: 0, players: {}, order: [], mode: null, g: null, msg: "" };
+    addPlayer(st, hostId, name, now);
+    return st;
+  }
+  function addPlayer(st, id, n, now) {
+    n = String(n || "Oyuncu").replace(/\s+/g, " ").trim().slice(0, 16) || "Oyuncu";
+    if (st.players[id]) { st.players[id].seen = now; if (st.players[id].n !== n) { st.players[id].n = n; return true; } return false; }
+    if (st.order.length >= MAXP) return false;
+    st.players[id] = { n: n, seen: now }; st.order.push(id);
+    if (st.g && st.g.m === "quiz" && st.g.pts[id] == null) st.g.pts[id] = 0;
+    return true;
+  }
+  function name(st, id) { return st.players[id] ? st.players[id].n : "?"; }
+  function removePlayer(st, id) {
+    if (!st.players[id] || id === st.host) return false;
+    delete st.players[id]; st.order = st.order.filter(function (x) { return x !== id; });
+    var g = st.g;
+    if (g && (g.m === "xox" || g.m === "duel") && g.p.indexOf(id) >= 0 && !isOver(g)) {
+      if (g.m === "xox") { g.over = true; g.msg = "Rakip odadan ayrıldı, oyun bitti."; }
+      else { g.ph = "end"; g.note = "Rakip odadan ayrıldı, maç bitti."; }
+    }
+    return true;
+  }
+  function isOver(g) { return g.m === "xox" ? g.over : g.m === "duel" ? g.ph === "end" : g.ph === "end"; }
+  function okPair(db, k) { var v = db.data.pairs[k]; return !!(v && v.s === "cx" && v.p.length >= 3); }
+
+  // ---- Quiz: herkes aynı soruya yarışır ----
+  function quizStart(db, st, now, rnd) {
+    var pool = db.keys.filter(function (k) { return okPair(db, k); });
+    var g = { m: "quiz", n: QUIZ_N, i: -1, keys: O.shuffle(pool, rnd).slice(0, QUIZ_N), ph: "q", t0: 0, dl: 0, until: 0, ans: {}, pts: {} };
+    st.order.forEach(function (id) { g.pts[id] = 0; });
+    st.g = g; quizNext(g, now);
+  }
+  function quizNext(g, now) {
+    g.i++; g.ph = "q"; g.ans = {}; g.t0 = now + QUIZ_CD; g.dl = g.t0 + QUIZ_T; g.until = 0;
+  }
+  function quizScore(elapsed) { return Math.round(500 + 500 * Math.max(0, 1 - elapsed / QUIZ_T)); }
+
+  // ---- XOX: iki oyuncu, diğerleri izler ----
+  function xoxStart(db, st, p, now, rnd) {
+    var grid = db.makeGrid(rnd, 2);
+    st.g = { m: "xox", p: p, rows: grid.rows, cols: grid.cols, own: [null, null, null, null, null, null, null, null, null],
+      pl: [null, null, null, null, null, null, null, null, null], turn: 0, over: false, line: null, win: -1, msg: "", dl: now + XOX_T, passes: 0, moves: 0 };
+  }
+  function xoxAfter(st, now) {
+    var g = st.g, w = O.winner(g.own);
+    g.moves++;
+    if (w) { g.over = true; g.line = w.line; g.win = w.who === "A" ? 0 : 1; g.msg += " " + name(st, g.p[g.win]) + " kazandı!"; return; }
+    if (g.own.every(Boolean)) { g.over = true; g.msg += " Berabere."; return; }
+    if (g.passes >= XOX_MAXPASS) { g.over = true; g.msg += " Üst üste " + XOX_MAXPASS + " hamle bilinemedi, berabere."; return; }
+    g.turn = 1 - g.turn; g.dl = now + XOX_T;
+  }
+
+  // ---- Düello: 3-2-1'de iki oyuncu takım seçer, ilk doğru cevap turu alır ----
+  function duelStart(st, p, now) {
+    st.g = { m: "duel", p: p, sc: [0, 0], r: 0, ph: "pick", dl: 0, pick: [null, null], teams: null, key: null, t0: 0, until: 0, win: null, note: "" };
+    duelRound(st.g, now);
+  }
+  function duelRound(g, now) { g.r++; g.ph = "pick"; g.dl = now + DUEL_PICK; g.pick = [null, null]; g.teams = null; g.key = null; g.win = null; g.note = ""; }
+  function duelResolve(db, st, now, rnd) {
+    var g = st.g, order = db.data.order, notes = [];
+    var okTeams = order.filter(function (c) { return db.duelBotTeam(c, rnd); });
+    var a = g.pick[0], b = g.pick[1];
+    if (!a || order.indexOf(a) < 0) { a = okTeams[Math.floor(rnd() * okTeams.length)]; notes.push(name(st, g.p[0]) + " seçmedi, rastgele takım verildi."); }
+    if (!b || order.indexOf(b) < 0) { b = null; notes.push(name(st, g.p[1]) + " seçmedi, rastgele takım verildi."); }
+    if (b && (a === b || !okPair(db, db.pairKey(a, b)))) { b = null; notes.push(a === g.pick[1] ? "İkiniz aynı takımı seçtiniz, " + name(st, g.p[1]) + " için uygun takım verildi." : "Bu iki takımın yeterli ortağı yok, " + name(st, g.p[1]) + " için uygun takım verildi."); }
+    if (!b) b = db.duelBotTeam(a, rnd);
+    if (!b) { a = okTeams[0]; b = db.duelBotTeam(a, rnd); }
+    g.teams = [a, b]; g.key = db.pairKey(a, b); g.ph = "race"; g.t0 = now; g.dl = now + DUEL_T; g.note = notes.join(" ");
+  }
+
+  function reduce(db, st, act, now, rnd) {
+    rnd = rnd || Math.random;
+    if (!st || st.closed || !act || typeof act !== "object") return false;
+    var id = act.id, g = st.g, ch = false;
+    st.at = now;
+    if (st.players[st.host]) st.players[st.host].seen = now;
+    switch (act.a) {
+      case "hello": ch = addPlayer(st, id, act.n, now); break;
+      case "bye": ch = removePlayer(st, id); break;
+      case "tick": ch = tick(db, st, now, rnd); break;
+      case "start": {
+        if (id !== st.host) return false;
+        var m = act.m;
+        if (m === "quiz") { quizStart(db, st, now, rnd); st.mode = m; ch = true; break; }
+        if (m === "xox" || m === "duel") {
+          var p = (act.p || []).filter(function (x) { return st.players[x]; });
+          if (p.length !== 2 || p[0] === p[1]) { st.msg = "XOX ve Düello için odadan iki oyuncu seç."; return true; }
+          if (m === "xox") xoxStart(db, st, p, now, rnd); else duelStart(st, p, now);
+          st.mode = m; st.msg = ""; ch = true;
+        }
+        break;
+      }
+      case "lobby": if (id === st.host && st.g) { st.g = null; st.mode = null; st.msg = ""; ch = true; } break;
+      // quiz
+      case "qa": {
+        if (!g || g.m !== "quiz" || g.ph !== "q" || now < g.t0 || !st.players[id] || g.ans[id]) return false;
+        var r = db.check(g.keys[g.i], String(act.text || ""));
+        if (r.status !== "correct") return false;
+        var el = now - g.t0, pts = quizScore(el);
+        g.ans[id] = { ok: true, p: r.id, t: el, s: pts }; g.pts[id] = (g.pts[id] || 0) + pts; ch = true;
+        ch = tick(db, st, now, rnd) || ch; break;
+      }
+      case "qp": {
+        if (!g || g.m !== "quiz" || g.ph !== "q" || !st.players[id] || g.ans[id]) return false;
+        g.ans[id] = { ok: false }; ch = true; ch = tick(db, st, now, rnd) || ch; break;
+      }
+      // xox
+      case "xm": case "xp": {
+        if (!g || g.m !== "xox" || g.over || g.p[g.turn] !== id) return false;
+        var who = name(st, id);
+        if (act.a === "xp") { g.passes++; g.msg = who + " pas geçti."; xoxAfter(st, now); return true; }
+        var c = act.cell | 0;
+        if (c < 0 || c > 8 || g.own[c]) return false;
+        var k = db.pairKey(g.rows[Math.floor(c / 3)], g.cols[c % 3]), rr = db.check(k, String(act.text || ""));
+        var cell = db.data.teams[g.rows[Math.floor(c / 3)]] + " × " + db.data.teams[g.cols[c % 3]];
+        if (rr.status === "correct" && g.pl.indexOf(rr.id) < 0) {
+          g.own[c] = g.turn === 0 ? "A" : "B"; g.pl[c] = rr.id; g.passes = 0;
+          g.msg = who + ": " + db.byId[rr.id].n + " (" + cell + ") ✓";
+        } else {
+          g.passes++;
+          g.msg = who + " " + cell + " için " + (rr.status === "correct" ? "zaten kullanılmış bir oyuncu yazdı" : "bilemedi") + ", sıra geçti.";
+        }
+        xoxAfter(st, now); ch = true; break;
+      }
+      // duel
+      case "dk": {
+        if (!g || g.m !== "duel" || g.ph !== "pick") return false;
+        var ki = g.p.indexOf(id); if (ki < 0 || db.data.order.indexOf(act.team) < 0) return false;
+        g.pick[ki] = act.team; ch = true; break;
+      }
+      case "da": {
+        if (!g || g.m !== "duel" || g.ph !== "race") return false;
+        var di = g.p.indexOf(id); if (di < 0) return false;
+        var dr = db.check(g.key, String(act.text || ""));
+        if (dr.status !== "correct") return false;
+        g.sc[di]++; g.win = { w: di, p: dr.id, t: now - g.t0 }; g.ph = "rev"; g.until = now + REVEAL; ch = true; break;
+      }
+      default: return false;
+    }
+    if (ch) st.seq++;
+    return ch;
+  }
+
+  function tick(db, st, now, rnd) {
+    var ch = false;
+    st.order.slice().forEach(function (id) {
+      if (id !== st.host && now - st.players[id].seen > STALE) ch = removePlayer(st, id) || ch;
+    });
+    var g = st.g; if (!g) return ch;
+    if (g.m === "quiz") {
+      if (g.ph === "q") {
+        var all = st.order.every(function (id) { return g.ans[id]; });
+        if (now >= g.dl || (now >= g.t0 && all)) { g.ph = "rev"; g.until = now + REVEAL; ch = true; }
+      } else if (g.ph === "rev" && now >= g.until) {
+        if (g.i + 1 < g.n) quizNext(g, now); else g.ph = "end";
+        ch = true;
+      }
+    } else if (g.m === "xox") {
+      if (!g.over && now >= g.dl) { g.passes++; g.msg = name(st, g.p[g.turn]) + " süresini doldurdu, sıra geçti."; xoxAfter(st, now); ch = true; }
+    } else if (g.m === "duel") {
+      if (g.ph === "pick" && now >= g.dl) { duelResolve(db, st, now, rnd); ch = true; }
+      else if (g.ph === "race" && now >= g.dl) { g.win = { w: -1 }; g.ph = "rev"; g.until = now + REVEAL; ch = true; }
+      else if (g.ph === "rev" && now >= g.until) {
+        if (g.sc[0] >= DUEL_WIN || g.sc[1] >= DUEL_WIN) g.ph = "end"; else duelRound(g, now);
+        ch = true;
+      }
+    }
+    if (ch) st.seq++;
+    return ch;
+  }
+
+  // Oda kodu: 4 karakter; ilk karakter hangi aktarıcının kullanıldığını söyler
+  var ABC = "ABCDEFGHJKMNPQRSTUVWXYZ23456789";
+  function roomCode(brokerIdx, nBrokers, rnd) {
+    rnd = rnd || Math.random;
+    var firsts = ABC.split("").filter(function (c, i) { return i % nBrokers === brokerIdx; }), s = firsts[Math.floor(rnd() * firsts.length)];
+    for (var i = 0; i < 3; i++) s += ABC[Math.floor(rnd() * ABC.length)];
+    return s;
+  }
+  function brokerOf(code, nBrokers) { return ABC.indexOf(String(code)[0]) % nBrokers; }
+  function validRoom(c) { return typeof c === "string" && /^[A-HJ-NP-Z2-9]{4}$/.test(c); }
+
+  var api = { create: create, reduce: reduce, roomCode: roomCode, brokerOf: brokerOf, validRoom: validRoom, quizScore: quizScore,
+    T: { QUIZ_N: QUIZ_N, QUIZ_T: QUIZ_T, QUIZ_CD: QUIZ_CD, REVEAL: REVEAL, XOX_T: XOX_T, DUEL_PICK: DUEL_PICK, DUEL_T: DUEL_T, DUEL_WIN: DUEL_WIN, STALE: STALE } };
+  if (typeof module !== "undefined" && module.exports) module.exports = api; else root.O26ON = api;
+})(this);
+</script>
+<script>/* Pasla ağ katmanı: hesapsız, herkese açık MQTT aktarıcısı üzerinden oda (WebSocket + MQTT 3.1.1, QoS 0).
+   Kurucu (host) oda durumunu "s" konusuna kalıcı (retained) yayınlar; oyuncular hamlelerini "a" konusuna yollar. */
+(function (root) {
+  "use strict";
+  var BROKERS = root.PASLA_BROKERS || ["wss://broker.hivemq.com:8884/mqtt", "wss://broker.emqx.io:8084/mqtt"];
+  var PREFIX = "pasla/v1/";
+  var enc = new TextEncoder(), dec = new TextDecoder();
+
+  function str(s) { var b = enc.encode(s); return [b.length >> 8, b.length & 255].concat(Array.from(b)); }
+  function bytes(b) { return [b.length >> 8, b.length & 255].concat(Array.from(b)); }
+  function packet(type, flags, body) {
+    var n = body.length, len = [];
+    do { var d = n % 128; n = Math.floor(n / 128); if (n > 0) d |= 128; len.push(d); } while (n > 0);
+    return new Uint8Array([(type << 4) | flags].concat(len, body));
+  }
+
+  // Asgari MQTT 3.1.1 istemcisi
+  function Mqtt(url, o) {
+    var ws = null, buf = new Uint8Array(0), pid = 1, ping = null, self = this, ready = false;
+    this.connect = function () {
+      return new Promise(function (res, rej) {
+        var done = false, to = setTimeout(function () { fail("zaman aşımı"); }, o.timeout || 7000);
+        function fail(e) { if (done) return; done = true; clearTimeout(to); try { ws && ws.close(); } catch (x) {} rej(new Error(e)); }
+        try { ws = new WebSocket(url, ["mqtt"]); } catch (e) { fail("bağlanılamadı"); return; }
+        ws.binaryType = "arraybuffer";
+        ws.onopen = function () {
+          var flags = 2, pay = str(o.clientId);
+          if (o.will) { flags |= 4 | (o.will.retain ? 32 : 0); pay = pay.concat(str(o.will.topic), bytes(enc.encode(o.will.payload || ""))); }
+          ws.send(packet(1, 0, str("MQTT").concat([4, flags, 0, 30], pay)));
+        };
+        ws.onmessage = function (e) {
+          var d = new Uint8Array(e.data), nb = new Uint8Array(buf.length + d.length); nb.set(buf); nb.set(d, buf.length); buf = nb;
+          for (;;) {
+            if (buf.length < 2) break;
+            var mul = 1, len = 0, i = 1, b;
+            do { if (i >= buf.length) return; b = buf[i++]; len += (b & 127) * mul; mul *= 128; } while (b & 128);
+            if (buf.length < i + len) break;
+            var type = buf[0] >> 4, fl = buf[0] & 15, body = buf.subarray(i, i + len);
+            buf = buf.slice(i + len);
+            if (type === 2) {
+              if (body[1] !== 0) { fail("aktarıcı reddetti (" + body[1] + ")"); return; }
+              ready = true; done = true; clearTimeout(to);
+              ping = setInterval(function () { try { ws.send(new Uint8Array([0xC0, 0])); } catch (x) {} }, 20000);
+              res(self);
+            } else if (type === 3) {
+              var tl = (body[0] << 8) | body[1], topic = dec.decode(body.subarray(2, 2 + tl)), off = 2 + tl + (((fl >> 1) & 3) ? 2 : 0);
+              if (o.onMessage) o.onMessage(topic, dec.decode(body.subarray(off)), !!(fl & 1));
+            }
+          }
+        };
+        ws.onerror = function () { fail("bağlantı hatası"); };
+        ws.onclose = function () { clearInterval(ping); var was = ready; ready = false; if (!done) fail("bağlantı kapandı"); else if (was && o.onClose) o.onClose(); };
+      });
+    };
+    this.subscribe = function (topic) { var id = pid++; ws.send(packet(8, 2, [id >> 8, id & 255].concat(str(topic), [0]))); };
+    this.publish = function (topic, payload, retain) {
+      if (!ready) return false;
+      try { ws.send(packet(3, retain ? 1 : 0, str(topic).concat(Array.from(enc.encode(payload))))); return true; } catch (e) { return false; }
+    };
+    this.end = function () { ready = false; clearInterval(ping); try { ws.send(new Uint8Array([0xE0, 0])); ws.close(); } catch (e) {} };
+    this.ready = function () { return ready; };
+  }
+
+  function rid(n) { var s = ""; for (var i = 0; i < n; i++) s += "abcdefghijkmnpqrstuvwxyz23456789"[Math.floor(Math.random() * 32)]; return s; }
+
+  /* Oda bağlantısı.
+     opts: {code?, host:bool, me, onState(st|null, why), onAction(act), onStatus(text)}
+     host=true ise kod üretilir; host=false ise koddaki aktarıcıya bağlanılır ve oda durumu beklenir. */
+  function Room(opts) {
+    var c = null, code = opts.code, me = opts.me, closed = false, retry = 0, self = this, gotState = false;
+    function topics() { return { s: PREFIX + code + "/s", a: PREFIX + code + "/a" }; }
+    function make(url) {
+      var t = topics();
+      return new Mqtt(url, {
+        clientId: "pasla_" + rid(10),
+        will: opts.host ? { topic: t.s, payload: "", retain: true } : { topic: t.a, payload: JSON.stringify({ a: "bye", id: me }) },
+        onMessage: function (topic, payload, retained) {
+          if (topic === t.s) {
+            if (opts.host) return;
+            if (!payload) { opts.onState(null, "lost"); return; }
+            var st; try { st = JSON.parse(payload); } catch (e) { return; }
+            gotState = true; opts.onState(st);
+          } else if (topic === t.a && opts.host) {
+            var act; try { act = JSON.parse(payload); } catch (e) { return; }
+            if (act && typeof act.id === "string") opts.onAction(act);
+          }
+        },
+        onClose: function () { if (!closed) reconnect(); }
+      });
+    }
+    function attach(conn) {
+      c = conn; var t = topics();
+      if (opts.host) c.subscribe(t.a); else c.subscribe(t.s);
+    }
+    function reconnect() {
+      if (closed) return;
+      opts.onStatus && opts.onStatus("Bağlantı koptu, yeniden bağlanılıyor…");
+      var url = BROKERS[root.O26ON.brokerOf(code, BROKERS.length)];
+      setTimeout(function () {
+        if (closed) return;
+        make(url).connect().then(function (conn) {
+          retry = 0; attach(conn); opts.onStatus && opts.onStatus("");
+          if (opts.onReconnect) opts.onReconnect();
+        }, function () { retry++; if (retry < 40) reconnect(); else opts.onStatus && opts.onStatus("Bağlantı kurulamadı. İnternetini kontrol edip odaya yeniden katıl."); });
+      }, Math.min(1000 + retry * 1000, 5000));
+    }
+
+    this.open = function () {
+      if (opts.host) {
+        // sırayla aktarıcıları dene, bağlanılanın numarasını koda göm
+        var i = 0;
+        return new Promise(function (res, rej) {
+          (function next() {
+            if (i >= BROKERS.length) { rej(new Error("Aktarıcılara ulaşılamadı. İnternetini kontrol et.")); return; }
+            var bi = i++; code = root.O26ON.roomCode(bi, BROKERS.length);
+            make(BROKERS[bi]).connect().then(function (conn) { attach(conn); res(code); }, next);
+          })();
+        });
+      }
+      var url = BROKERS[root.O26ON.brokerOf(code, BROKERS.length)];
+      return make(url).connect().then(function (conn) {
+        attach(conn);
+        return new Promise(function (res, rej) {
+          var waited = 0, iv = setInterval(function () {
+            waited += 200;
+            if (gotState) { clearInterval(iv); res(code); }
+            else if (waited >= 6000) { clearInterval(iv); closed = true; conn.end(); rej(new Error("Bu kodla açık bir oda bulunamadı.")); }
+          }, 200);
+        });
+      }, function () { throw new Error("Aktarıcıya bağlanılamadı. İnternetini kontrol et."); });
+    };
+    this.send = function (act) { act.id = me; return c && c.publish(topics().a, JSON.stringify(act), false); };
+    this.publishState = function (st) { return c && c.publish(topics().s, JSON.stringify(st), true); };
+    this.close = function (finalState) {
+      closed = true;
+      if (c) {
+        if (opts.host) c.publish(topics().s, finalState ? JSON.stringify(finalState) : "", true);
+        else c.publish(topics().a, JSON.stringify({ a: "bye", id: me }), false);
+        var cc = c; setTimeout(function () { cc.end(); }, 300);
+      }
+    };
+    this.code = function () { return code; };
+    this.connected = function () { return !!(c && c.ready()); };
+  }
+
+  root.PaslaNet = { Mqtt: Mqtt, Room: Room, BROKERS: BROKERS, rid: rid };
+})(this);
+</script>
+<script>/* Online oda arayüzü: lobi, davet, Quiz / XOX / Düello canlı ekranları. Yetki odayı kuranda (online_core.reduce). */
+(function () {
+  "use strict";
+  var U = window.O26UI, O = window.O26, ON = window.O26ON, NET = window.PaslaNet;
+  if (!U || !O || !ON || !NET) return;
+  var db = U.db, T = U.T, esc = U.esc;
+  var $ = function (id) { return document.getElementById(id); };
+  var tg = window.Telegram && window.Telegram.WebApp && window.Telegram.WebApp.initData ? window.Telegram.WebApp : null;
+  var ORDER = Object.keys(T).sort(function (a, b) { return T[a].localeCompare(T[b], "tr"); });
+  var LOCK = 1500;
+
+  var me = (function () { var k = "pasla.me", v; try { v = sessionStorage.getItem(k); } catch (e) {} if (!v) { v = "u" + NET.rid(9); try { sessionStorage.setItem(k, v); } catch (e) {} } return v; })();
+  var room = null, host = false, st = null, offset = 0, mode = "quiz", sel = [], selCell = -1, peekCell = -1;
+  var formKey = "", lockUntil = 0, pending = false, sigStage = "", sigInfo = "", sigLobby = "", lostT = null, beat = null, loop = null;
+  var myPick = null;
+
+  function now() { return Date.now() + offset; }
+  function savedName() { try { return localStorage.getItem("pasla.name") || ""; } catch (e) { return ""; } }
+  function tgName() { var u = tg && tg.initDataUnsafe && tg.initDataUnsafe.user; return u ? (u.first_name || u.username || "") : ""; }
+  function myName() { var n = $("onName").value.trim() || savedName() || tgName(); return n.slice(0, 16); }
+  function nm(id) { return st && st.players[id] ? st.players[id].n : "Ayrıldı"; }
+  function err(t) { $("onErr").hidden = !t; $("onErr").textContent = t || ""; }
+  function crest(code, sm) {
+    var c = U.COLORS[code] || ["#333", "#fff"];
+    var txt = U.contrast(c[0], c[1]) >= 4.5 ? c[1] : (U.lum(c[0]) < 0.35 ? "#ffffff" : "#111111");
+    return "<span class='crest" + (sm ? " sm" : "") + "' style='--c1:" + c[0] + ";--c2:" + c[1] + ";color:" + txt + "'>" + code + "</span>";
+  }
+  function vsHTML(a, b, wa, wb) {
+    function t(c, w) { return "<div class='team'>" + crest(c) + "<b>" + esc(T[c]) + "</b>" + (w ? "<small class='who'>" + esc(w) + "</small>" : "") + "</div>"; }
+    return "<div class='vs'>" + t(a, wa) + "<span class='x' aria-hidden='true'>×</span>" + t(b, wb) + "</div>";
+  }
+  function secs(ms) { return Math.max(0, Math.ceil(ms / 1000)); }
+
+  // ---- bağlantı ----
+  function enter(isHost, code) {
+    var n = myName();
+    if (!n) { err("Önce adını yaz."); $("onName").focus(); return; }
+    try { localStorage.setItem("pasla.name", n); } catch (e) {}
+    err(""); $("onCreate").disabled = $("onJoin").disabled = true;
+    $("onCreate").textContent = isHost ? "Oda kuruluyor…" : "Oda kur";
+    if (!isHost) $("onJoin").textContent = "Bağlanıyor…";
+    host = isHost;
+    room = new NET.Room({
+      host: isHost, code: code, me: me,
+      onAction: function (a) { if (host && st) { if (ON.reduce(db, st, a, Date.now(), Math.random)) push(); } },
+      onState: function (s, why) {
+        if (!s) { netMsg("Oda kurucusunun bağlantısı koptu, bekleniyor…"); clearTimeout(lostT); lostT = setTimeout(function () { leave("Oda kurucusu geri dönmedi, oda kapandı."); }, 30000); return; }
+        clearTimeout(lostT); netMsg("");
+        if (s.closed) { leave("Oda kurucusu odayı kapattı."); return; }
+        offset = s.at - Date.now(); st = s;
+        if (!st.players[me]) send({ a: "hello", n: myName() });
+        render();
+      },
+      onStatus: netMsg,
+      onReconnect: function () { if (host && st) push(); else send({ a: "hello", n: myName() }); }
+    });
+    room.open().then(function (c) {
+      if (isHost) { st = ON.create(me, n, c, Date.now()); push(); loop = setInterval(function () { if (st && ON.reduce(db, st, { a: "tick" }, Date.now(), Math.random)) push(); render(); }, 250); }
+      else { send({ a: "hello", n: n }); loop = setInterval(render, 250); beat = setInterval(function () { send({ a: "hello", n: myName() }); }, 10000); }
+      $("onStart").hidden = true; $("onRoom").hidden = false; $("tabOnline").classList.add("on");
+      sel = [me]; render();
+      if (isHost) $("onStatus").textContent = "Arkadaşlarını davet et";
+    }, function (e) {
+      room = null; err(e.message);
+    }).then(function () {
+      $("onCreate").disabled = $("onJoin").disabled = false; $("onCreate").textContent = "Oda kur"; $("onJoin").textContent = "Odaya katıl";
+    });
+  }
+  function push() { st.at = Date.now(); room && room.publishState(st); render(); }
+  function send(a) {
+    if (host) { a.id = me; if (ON.reduce(db, st, a, Date.now(), Math.random)) push(); return; }
+    room && room.send(a);
+  }
+  function netMsg(t) { $("onNet").hidden = !t; $("onNet").textContent = t || ""; }
+  function leave(why) {
+    clearInterval(loop); clearInterval(beat); clearTimeout(lostT);
+    if (room) room.close(host ? { v: 1, closed: true, code: st && st.code } : null);
+    room = null; st = null; host = false; sel = []; selCell = peekCell = -1; formKey = sigStage = sigInfo = sigLobby = ""; myPick = null;
+    $("onRoom").hidden = true; $("onStart").hidden = false; $("tabOnline").classList.remove("on");
+    netMsg(""); err(why || "");
+  }
+  function invite() {
+    if (!st) return;
+    var app = window.ORTAK26_TG_APP, code = st.code;
+    var url = app ? "https://t.me/" + app + "?startapp=oda_" + code : location.href.split("#")[0].split("?")[0] + "?oda=" + code + "#online";
+    var text = "⚽ Pasla odasına gel! Kod: " + code + (myName() ? " (" + myName() + ")" : "");
+    if (tg) { tg.openTelegramLink("https://t.me/share/url?url=" + encodeURIComponent(url) + "&text=" + encodeURIComponent(text)); return; }
+    if (navigator.share) { navigator.share({ text: text, url: url }).catch(function () {}); return; }
+    var all = text + "\n" + url;
+    (navigator.clipboard ? navigator.clipboard.writeText(all) : Promise.reject()).then(function () { $("onStatus").textContent = "Davet linki kopyalandı"; }, function () { $("onStatus").textContent = url; });
+  }
+
+  // ---- çizim ----
+  function render() {
+    if (!st) return;
+    $("onCodeBig").textContent = st.code;
+    var g = st.g;
+    $("onLobby").hidden = !!g; $("onGame").hidden = !g;
+    if (!g) { lobby(); return; }
+    if (g.m === "quiz") quiz(g); else if (g.m === "xox") xox(g); else duel(g);
+    var over = g.m === "xox" ? g.over : g.ph === "end";
+    $("onHostEnd").hidden = !host; $("onAgain").hidden = !over;
+    $("onStatus").textContent = { quiz: "Quiz", xox: "XOX", duel: "Düello" }[g.m] + " · " + st.order.length + " kişi";
+  }
+  function lobby() {
+    formKey = "";
+    $("onForm").hidden = true; $("onHint").hidden = true;
+    sel = sel.filter(function (id) { return st.players[id]; });
+    if (host && sel.length < 2) st.order.forEach(function (id) { if (sel.length < 2 && sel.indexOf(id) < 0) sel.push(id); });
+    var two = mode !== "quiz";
+    var sig = JSON.stringify([st.order.map(function (id) { return id + st.players[id].n; }), sel, mode, host, st.msg]);
+    $("onCount").textContent = "(" + st.order.length + ")";
+    $("onHostCtl").hidden = !host; $("onWait").hidden = host;
+    $("onMsg").hidden = !st.msg; $("onMsg").textContent = st.msg || "";
+    if (!host) $("onStatus").textContent = "Lobide";
+    if (sig === sigLobby) return; sigLobby = sig;
+    $("onPlayers").innerHTML = st.order.map(function (id) {
+      var k = sel.indexOf(id), on = host && two && k >= 0;
+      var tag = (id === st.host ? "<span class='on-crown' title='Oda kurucusu'>👑</span>" : "") + (id === me ? "<span class='muted small'>sen</span>" : "");
+      var inner = "<span class='on-av'>" + esc(st.players[id].n.slice(0, 1).toUpperCase()) + "</span><b>" + esc(st.players[id].n) + "</b>" + tag + (on ? "<span class='on-slot s" + k + "'>" + (k ? "O / 2" : "X / 1") + "</span>" : "");
+      return "<li>" + (host && two ? "<button type='button' class='on-p" + (on ? " sel" : "") + "' data-p='" + esc(id) + "' aria-pressed='" + on + "'>" + inner + "</button>" : "<div class='on-p'>" + inner + "</div>") + "</li>";
+    }).join("");
+    document.querySelectorAll("#onHostCtl [data-m]").forEach(function (b) { b.setAttribute("aria-selected", String(b.dataset.m === mode)); });
+    $("onModeHelp").textContent = mode === "quiz" ? "Herkes aynı 10 soruya yarışır. Hızlı doğru cevap daha çok puan getirir (500–1000)."
+      : (mode === "xox" ? "Oynayacak iki kişiyi seç (dokun). Diğerleri canlı izler. Yanlış cevapta sıra geçer, hamle başına 45 sn." : "Oynayacak iki kişiyi seç. 3-2-1'de ikisi takım seçer, ilk doğru cevap turu alır, ilk 3 kazanır.") +
+      (two && st.order.length < 2 ? " Önce bir arkadaşının odaya katılmasını bekle." : "");
+    $("onGo").disabled = two && sel.length !== 2;
+  }
+
+  function setForm(show, key, forTxt, pass) {
+    var f = $("onForm");
+    if (key !== formKey) { formKey = key; $("onIn").value = ""; $("onHint").hidden = true; lockUntil = 0; pending = false; }
+    var vis = show && !pending;
+    if (f.hidden === vis) { f.hidden = !vis; if (vis) setTimeout(function () { try { $("onIn").focus({ preventScroll: true }); } catch (e) {} }, 30); }
+    $("onFormFor").textContent = forTxt || ""; $("onFormFor").hidden = !forTxt;
+    $("onPass").hidden = !pass;
+    var locked = Date.now() < lockUntil;
+    $("onOk").disabled = locked; $("onIn").readOnly = locked;
+    if (!locked && $("onHint").dataset.lock === "1") { $("onHint").hidden = true; $("onHint").dataset.lock = ""; }
+  }
+  function stage(sig, html) { if (sig !== sigStage) { sigStage = sig; $("onStage").innerHTML = html; } }
+  function info(sig, html) { if (sig !== sigInfo) { sigInfo = sig; $("onInfo").innerHTML = html; } }
+  function scoreList(rows) {
+    return "<ol class='on-scores'>" + rows.map(function (r, i) {
+      return "<li class='" + (r.id === me ? "me" : "") + "'><span class='rk'>" + (i + 1) + "</span><b>" + esc(r.n) + "</b><span class='pts'>" + esc(String(r.s)) + "</span></li>";
+    }).join("") + "</ol>";
+  }
+
+  function quiz(g) {
+    var t = now(), key = g.keys[g.i], tm = db.teamsOf(key), inRoom = !!st.players[me];
+    $("onTag").textContent = "Quiz · Soru " + (g.i + 1) + "/" + g.n;
+    var cd = g.ph === "q" && t < g.t0;
+    $("onClock").textContent = g.ph === "q" ? (cd ? "Başlıyor" : "Kalan " + secs(g.dl - t) + " sn") : g.ph === "rev" ? "Sonraki soru " + secs(g.until - t) + " sn" : "Bitti";
+    stage("q" + g.i + g.ph + (cd ? "cd" : ""), g.ph === "end" ? "" : vsHTML(tm[0], tm[1]) + (cd ? "<div class='du-count' id='onBig'></div>" : ""));
+    if ($("onBig")) $("onBig").textContent = secs(g.t0 - t);
+    setForm(g.ph === "q" && !cd && inRoom && !g.ans[me], "q" + g.i, "", true);
+    var rows = st.order.map(function (id) { return { id: id, n: nm(id), s: g.pts[id] || 0 }; }).sort(function (a, b) { return b.s - a.s; });
+    var answered = st.order.filter(function (id) { return g.ans[id]; });
+    if (g.ph === "q") {
+      info("qi" + g.i + answered.join(), "<p class='muted small'>Cevap verenler: " + answered.length + "/" + st.order.length + "</p><div class='on-chips'>" +
+        st.order.map(function (id) { return "<span class='on-chip" + (g.ans[id] ? (g.ans[id].ok ? " ok" : " pass") : "") + "'>" + esc(nm(id)) + (g.ans[id] ? (g.ans[id].ok ? " ✓" : " –") : "") + "</span>"; }).join("") + "</div>" +
+        (g.ans[me] ? "<p class='on-wait'>" + (g.ans[me].ok ? "✓ Doğru! +" + g.ans[me].s + " puan. Diğerleri bekleniyor…" : "Pas geçtin. Diğerleri bekleniyor…") + "</p>" : ""));
+    } else if (g.ph === "rev") {
+      var mine = g.ans[me] && g.ans[me].ok ? g.ans[me].p : null;
+      info("qr" + g.i, "<h3 class='on-h'>Bu soruda</h3><ul class='on-round'>" + st.order.map(function (id) {
+        var a = g.ans[id]; return "<li class='" + (a && a.ok ? "ok" : "bad") + "'><b>" + esc(nm(id)) + "</b><small>" + (a && a.ok ? "✓ " + esc(db.byId[a.p].n) + " · " + (a.t / 1000).toFixed(1).replace(".", ",") + " sn · +" + a.s : "✗") + "</small></li>";
+      }).join("") + "</ul><h3 class='on-h'>Puan durumu</h3>" + scoreList(rows) + U.answersHTML(key, mine, { limit: 8 }));
+    } else {
+      info("qe", "<h2 class='du-title on-final'>🏆 " + esc(rows[0] ? rows[0].n : "") + "</h2>" + scoreList(rows));
+    }
+  }
+
+  function xox(g) {
+    var t = now(), myTurn = !g.over && g.p[g.turn] === me, players = g.p.indexOf(me) >= 0;
+    $("onTag").textContent = "XOX · " + nm(g.p[0]) + " (X) – " + nm(g.p[1]) + " (O)";
+    $("onClock").textContent = g.over ? "Bitti" : (myTurn ? "Sıra sende" : nm(g.p[g.turn]) + " oynuyor") + " · " + secs(g.dl - t) + " sn";
+    if (!myTurn) selCell = -1;
+    if (selCell >= 0 && g.own[selCell]) selCell = -1;
+    var sig = "x" + g.moves + g.over + selCell + peekCell + myTurn;
+    var h = "<div class='on-xoxhead'><span class='on-mk a" + (!g.over && g.turn === 0 ? " on" : "") + "'>X · " + esc(nm(g.p[0])) + "</span><span class='on-mk b" + (!g.over && g.turn === 1 ? " on" : "") + "'>O · " + esc(nm(g.p[1])) + "</span></div>";
+    h += "<div class='grid on-grid'><div class='gh corner'><span class='ball'>⚽</span></div>";
+    g.cols.forEach(function (c) { h += "<div class='gh'>" + crest(c, true) + "<span>" + esc(T[c]) + "</span></div>"; });
+    for (var r = 0; r < 3; r++) {
+      h += "<div class='gh row'>" + crest(g.rows[r], true) + "<span>" + esc(T[g.rows[r]]) + "</span></div>";
+      for (var c = 0; c < 3; c++) {
+        var i = r * 3 + c, o = g.own[i], p = g.pl[i] != null ? db.byId[g.pl[i]] : null, win = g.line && g.line.indexOf(i) >= 0;
+        var can = (myTurn && !o) || g.over;
+        h += "<button type='button' class='cell" + (o ? " own-" + o.toLowerCase() : "") + (win ? " win" : "") + (i === selCell || i === peekCell ? " sel" : "") + "' data-cell='" + i + "'" + (can ? "" : " disabled") +
+          " aria-label='" + esc(T[g.rows[r]] + " ve " + T[g.cols[c]] + (p ? ": " + p.n : "")) + "'>" +
+          (p ? "<span class='av'>" + esc(p.n.replace(/\(.*\)/, "").trim().split(/\s+/).map(function (w) { return w[0]; }).slice(0, 2).join("").toUpperCase()) + "</span><span class='pn'>" + esc(p.n) + "</span>"
+             : (g.over ? "<span class='peek'>Cevaplar</span>" : "<span class='plus' aria-hidden='true'>" + (myTurn ? "+" : "") + "</span>")) + "</button>";
+      }
+    }
+    stage(sig, h + "</div>");
+    var cellName = selCell >= 0 ? T[g.rows[Math.floor(selCell / 3)]] + " × " + T[g.cols[selCell % 3]] : "";
+    setForm(myTurn && selCell >= 0, "x" + g.moves + ":" + selCell, cellName ? "Kare: " + cellName : "", true);
+    if (myTurn && selCell < 0) $("onPass").hidden = true;
+    var extra = myTurn && selCell < 0 ? "<p class='on-wait'>Sıra sende: bir kareye dokun. <button type='button' class='ghost' id='onXPass'>Pas geç</button></p>" : (!players && !g.over ? "<p class='muted small'>İzliyorsun.</p>" : "");
+    var peek = g.over && peekCell >= 0 ? U.answersHTML(db.pairKey(g.rows[Math.floor(peekCell / 3)], g.cols[peekCell % 3]), g.pl[peekCell], { limit: 10 }) : "";
+    info("xi" + g.moves + g.over + peekCell + (myTurn && selCell < 0), "<p class='xo-msg'>" + esc(g.msg || "") + "</p>" + extra + (g.over ? "<p class='muted small'>Karelere dokunup tüm cevapları görebilirsin.</p>" : "") + peek);
+  }
+
+  function duel(g) {
+    var t = now(), k = g.p.indexOf(me), player = k >= 0;
+    $("onTag").textContent = "Düello · Tur " + g.r;
+    var sb = "<div class='on-duelsc'><span>" + esc(nm(g.p[0])) + " <b>" + g.sc[0] + "</b></span><span class='muted'>ilk 3</span><span><b>" + g.sc[1] + "</b> " + esc(nm(g.p[1])) + "</span></div>";
+    if (g.ph === "pick") {
+      if (g.r !== (myPick && myPick.r)) myPick = { r: g.r, team: null };
+      $("onClock").textContent = player ? "Takımını seç!" : "Takımlar seçiliyor";
+      stage("dp" + g.r + player + (myPick.team || ""), sb + "<div class='du-count' id='onBig'></div>" +
+        (player ? "<div class='du-teams'>" + ORDER.map(function (c) { return "<button type='button' class='du-t' data-team='" + c + "' aria-pressed='" + (myPick.team === c) + "'>" + crest(c, true) + "<span>" + esc(T[c]) + "</span></button>"; }).join("") + "</div>"
+                : "<p class='prompt'>" + esc(nm(g.p[0])) + " ve " + esc(nm(g.p[1])) + " takım seçiyor…</p>"));
+      $("onBig").textContent = Math.min(3, Math.max(1, secs(g.dl - t)));
+      setForm(false, "dp" + g.r);
+      info("dpi", "");
+    } else if (g.ph === "race") {
+      $("onClock").textContent = ((t - g.t0) / 1000).toFixed(1).replace(".", ",") + " sn";
+      stage("dr" + g.r, sb + vsHTML(g.teams[0], g.teams[1], nm(g.p[0]) + " seçti", nm(g.p[1]) + " seçti"));
+      setForm(player, "dr" + g.r, "", false);
+      info("dri" + g.r, (g.note ? "<p class='hint'>" + esc(g.note) + "</p>" : "") + (player ? "" : "<p class='muted small'>İzliyorsun: ilk doğru cevabı yazan turu alır.</p>"));
+    } else {
+      var w = g.win || { w: -1 };
+      $("onClock").textContent = g.ph === "end" ? "Maç bitti" : "Sonraki tur " + secs(g.until - t) + " sn";
+      stage("dv" + g.r + g.ph, sb + (g.teams ? vsHTML(g.teams[0], g.teams[1]) : ""));
+      setForm(false, "dv" + g.r);
+      var champ = g.sc[0] >= 3 ? 0 : g.sc[1] >= 3 ? 1 : -1;
+      var v = w.w < 0 ? "Kimse bulamadı, tur berabere." : (g.p[w.w] === me ? "✓ Turu aldın" : nm(g.p[w.w]) + " turu aldı") + " · " + (w.t / 1000).toFixed(1).replace(".", ",") + " sn · " + esc(db.byId[w.p].n);
+      info("dvi" + g.r + g.ph, (g.ph === "end" ? "<h2 class='du-title on-final'>" + (champ >= 0 ? "🏆 " + esc(nm(g.p[champ])) + " kazandı " + g.sc[champ] + "–" + g.sc[1 - champ] : esc(g.note || "Maç bitti")) + "</h2>" : "") +
+        (g.note && g.ph === "end" && champ >= 0 ? "" : "") + "<p class='on-verdict " + (w.w >= 0 && g.p[w.w] === me ? "ok" : "") + "'>" + v + "</p>" + (g.key ? U.answersHTML(g.key, w.w >= 0 ? w.p : null, { limit: 8 }) : ""));
+    }
+  }
+
+  // ---- olaylar ----
+  U.attachAC($("onIn"), $("onList"), function () { $("onHint").hidden = true; });
+  $("onForm").addEventListener("submit", function (e) {
+    e.preventDefault();
+    if (!st || !st.g || pending || Date.now() < lockUntil) return;
+    var g = st.g, text = $("onIn").value, h = $("onHint");
+    var key = g.m === "quiz" ? g.keys[g.i] : g.m === "duel" ? g.key : (selCell >= 0 ? db.pairKey(g.rows[Math.floor(selCell / 3)], g.cols[selCell % 3]) : null);
+    if (!key || !text.trim()) return;
+    var r = db.check(key, text);
+    h.hidden = false; h.dataset.lock = "";
+    if (r.status === "ambiguous") { h.textContent = "Bu soyadla birden fazla oyuncu var, adını da yaz."; return; }
+    if (r.status === "surname_none") { h.textContent = "Bu soyad bu ikili için tutmuyor. Adla birlikte yaz."; return; }
+    if (r.status === "suggest") { h.textContent = "Şunu mu demek istedin: " + db.byId[r.id].n + "?"; return; }
+    if (g.m === "xox") {
+      if (r.status === "correct" && g.pl.indexOf(r.id) >= 0) { h.textContent = "Bu oyuncu ızgarada zaten var, başka biri yaz."; return; }
+      h.hidden = true; pending = true; send({ a: "xm", cell: selCell, text: text }); selCell = -1; render(); return;
+    }
+    if (r.status === "correct") { h.hidden = true; pending = true; send({ a: g.m === "quiz" ? "qa" : "da", text: text }); render(); return; }
+    lockUntil = Date.now() + LOCK; h.dataset.lock = "1";
+    h.textContent = "❌ " + (r.status === "wrong" ? "Bu oyuncu ikisinde birden oynamadı." : "Bu isim veride yok.") + " 1,5 sn ceza…";
+    if (tg && tg.HapticFeedback) tg.HapticFeedback.notificationOccurred("error");
+    $("onIn").value = ""; render();
+  });
+  $("onPass").addEventListener("click", function () {
+    if (!st || !st.g || pending) return;
+    if (st.g.m === "quiz") { pending = true; send({ a: "qp" }); }
+    else if (st.g.m === "xox") { pending = true; send({ a: "xp" }); selCell = -1; }
+    render();
+  });
+  $("onStage").addEventListener("click", function (e) {
+    if (!st || !st.g) return;
+    var cell = e.target.closest("[data-cell]"), team = e.target.closest("[data-team]");
+    if (cell && st.g.m === "xox") {
+      var i = +cell.dataset.cell;
+      if (st.g.over) peekCell = i; else if (st.g.p[st.g.turn] === me && !st.g.own[i]) selCell = i;
+      render();
+    } else if (team && st.g.m === "duel" && st.g.ph === "pick") {
+      myPick = { r: st.g.r, team: team.dataset.team }; send({ a: "dk", team: team.dataset.team }); render();
+    }
+  });
+  $("onInfo").addEventListener("click", function (e) { if (e.target.id === "onXPass" && st && st.g && !pending) { pending = true; send({ a: "xp" }); render(); } });
+  $("onPlayers").addEventListener("click", function (e) {
+    var b = e.target.closest("[data-p]"); if (!b || !host) return;
+    var id = b.dataset.p, k = sel.indexOf(id);
+    if (k >= 0) sel.splice(k, 1); else { if (sel.length >= 2) sel.shift(); sel.push(id); }
+    sigLobby = ""; render();
+  });
+  document.querySelectorAll("#onHostCtl [data-m]").forEach(function (b) { b.addEventListener("click", function () { mode = b.dataset.m; sigLobby = ""; render(); }); });
+  $("onGo").addEventListener("click", function () { if (host) send({ a: "start", m: mode, p: sel.slice(0, 2) }); });
+  $("onAgain").addEventListener("click", function () { if (host && st.g) send({ a: "start", m: st.g.m, p: st.g.p }); });
+  $("onToLobby").addEventListener("click", function () { if (host) { sigLobby = ""; send({ a: "lobby" }); } });
+  $("onCreate").addEventListener("click", function () { enter(true); });
+  $("onJoin").addEventListener("click", function () {
+    var c = $("onCode").value.trim().toUpperCase();
+    if (!ON.validRoom(c)) { err("Oda kodu 4 karakter olmalı (ör. K7P2)."); $("onCode").focus(); return; }
+    enter(false, c);
+  });
+  $("onCode").addEventListener("input", function () { var v = this.value.toUpperCase().replace(/[^A-Z0-9]/g, ""); if (v !== this.value) this.value = v; });
+  $("onCode").addEventListener("keydown", function (e) { if (e.key === "Enter") $("onJoin").click(); });
+  $("onInvite").addEventListener("click", invite);
+  $("onLeave").addEventListener("click", function () { leave(""); });
+  window.addEventListener("pagehide", function () { if (room && !host) room.close(null); });
+
+  // ---- açılış: isim ve davet linki ----
+  $("onName").value = savedName() || tgName();
+  var code = null;
+  try { code = new URLSearchParams(location.search).get("oda"); } catch (e) {}
+  if (!code) { var m = location.hash.match(/[?&]oda=([A-Za-z0-9]+)/); if (m) code = m[1]; }
+  if (!code && tg && tg.initDataUnsafe && /^oda_/.test(tg.initDataUnsafe.start_param || "")) code = tg.initDataUnsafe.start_param.slice(4);
+  if (code && ON.validRoom(code.toUpperCase())) {
+    $("onCode").value = code.toUpperCase();
+    if (!/^#online/.test(location.hash)) location.hash = "#online";
+    if (myName()) enter(false, code.toUpperCase()); else { err("Adını yaz, sonra Odaya katıl'a bas."); }
+  }
+  window.O26ONLINE = { state: function () { return st; }, me: me };
 })();
 </script>
 </body></html>
