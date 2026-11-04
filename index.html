@@ -1,4 +1,4 @@
-<!doctype html><html lang="tr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,user-scalable=no"><script src="https://telegram.org/js/telegram-web-app.js"></script><script>window.ORTAK26_TG_APP="";</script><style>html,body{margin:0;background:#0a1712}</style></head><body><title>Ortak 26</title>
+<!doctype html><html lang="tr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,user-scalable=no"><script src="https://telegram.org/js/telegram-web-app.js"></script><script>window.ORTAK26_TG_APP="";</script><style>html,body{margin:0;background:#0a1712}</style></head><body><title>Pasla</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="theme-color" content="#0a1712">
@@ -200,7 +200,7 @@ button:disabled{opacity:.45;cursor:default}
 </style>
 <div class="shell">
   <header class="top">
-    <div class="wordmark"><span class="ball" aria-hidden="true">26</span><div>ORTAK 26<small>ORTAK FUTBOLCU QUIZİ · 2000–2026</small></div></div>
+    <div class="wordmark"><span class="ball" aria-hidden="true">⚽</span><div>PASLA<small>ORTAK FUTBOLCU OYUNU · 2000–2026</small></div></div>
     <span class="count" id="dataBadge">veri yükleniyor</span>
   </header>
 
@@ -1095,7 +1095,7 @@ button:disabled{opacity:.45;cursor:default}
       : "Bir kareye dokun, iki kulüpte de oynamış bir futbolcu yaz. Doğru bilirsen kare senin. Yan yana üç kare (satır, sütun ya da çapraz) kazanır. Yanlış cevapta sıra rakibe geçer.";
     $("xoTurn").textContent = g.over ? "Bitti" : solo ? "" : (g.turn === "A" ? nm[0] : nm[1]) + " oynuyor";
 
-    var h = "<div class='gh corner'><span class='ball'>26</span></div>";
+    var h = "<div class='gh corner'><span class='ball'>⚽</span></div>";
     g.cols.forEach(function (c) { h += "<div class='gh'>" + crestHTML(c) + "<span>" + esc(T[c]) + "</span></div>"; });
     for (var r = 0; r < 3; r++) {
       h += "<div class='gh row'>" + crestHTML(g.rows[r]) + "<span>" + esc(T[g.rows[r]]) + "</span></div>";
@@ -1504,7 +1504,7 @@ button:disabled{opacity:.45;cursor:default}
   function shareText(res) {
     var marks = res.rounds.map(function (r) { return r.ok ? "✅" : "❌"; }).join("");
     var who = myName();
-    return "⚽ Ortak 26 · Meydan okuma " + store.code + "\n" + (who ? who + ": " : "") + res.ok + "/" + N + " doğru · " + fmt(res.t) + " sn\n" + marks + "\nSıra sende 👇";
+    return "⚽ Pasla · Meydan okuma " + store.code + "\n" + (who ? who + ": " : "") + res.ok + "/" + N + " doğru · " + fmt(res.t) + " sn\n" + marks + "\nSıra sende 👇";
   }
   function share() {
     var res = store.results[store.code]; if (!res) return;
