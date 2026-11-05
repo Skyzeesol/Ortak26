@@ -66,7 +66,6 @@ textarea{font-size:13px;font-family:ui-monospace,Menlo,monospace}
 .stints{list-style:none;margin:6px 0 0;padding:0;display:flex;flex-wrap:wrap;gap:6px}
 .stints li{font-size:12.5px;border:1px solid var(--edge);border-radius:999px;padding:3px 9px;font-variant-numeric:tabular-nums}
 .stints li.hl{border-color:var(--lime);color:var(--lime)}
-.bridge{font-size:13px;color:var(--gold);margin-top:6px}
 .alts{font-size:14px;color:var(--muted)}
 .alts summary{cursor:pointer;color:var(--txt);font-weight:700}
 .alts ul{margin:8px 0 0;padding-left:18px;columns:2;column-gap:18px}
@@ -92,7 +91,7 @@ button:disabled{opacity:.45;cursor:default}
 .choices button:disabled{opacity:1}
 
 /* sayfa sekmeleri */
-.pages{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;background:var(--panel);border:1px solid var(--edge);border-radius:14px;padding:4px}
+.pages{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:6px;background:var(--panel);border:1px solid var(--edge);border-radius:14px;padding:4px}
 .pages a{text-align:center;padding:11px 8px;border-radius:10px;font-weight:800;color:var(--muted);text-decoration:none;font-family:var(--display);font-size:19px;letter-spacing:.4px}
 .pages a[aria-current="page"]{background:var(--txt);color:var(--bg)}
 #pageQuiz,#pageXox{display:flex;flex-direction:column;gap:14px}
@@ -114,9 +113,7 @@ button:disabled{opacity:.45;cursor:default}
 .answers .nm{display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 6px;min-width:0}
 .answers .nm small{flex-basis:100%;color:var(--muted);font-size:12.5px;font-variant-numeric:tabular-nums}
 .answers .you{font-size:11px;font-weight:800;color:var(--ink);background:var(--lime);border-radius:999px;padding:1px 7px}
-.bb{font-size:10.5px;font-weight:800;letter-spacing:.4px;color:var(--gold);border:1px solid var(--gold);border-radius:999px;padding:0 6px}
 .answers .more-btn{margin-top:8px;width:100%}
-.answers .legend{margin:8px 0 0;font-size:12px}
 
 /* XOX */
 .xo-board{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:8px;background:var(--panel);border:1px solid var(--edge);border-radius:18px;padding:12px 14px}
@@ -257,6 +254,53 @@ html.kb body{padding-bottom:60vh}
 .du-t.used{opacity:.32;cursor:not-allowed}
 .du-t.used span:not(.crest){text-decoration:line-through}
 .du-t small{font-size:9.5px;color:var(--muted);text-transform:uppercase;letter-spacing:.5px}
+
+/* Taş Taş */
+.pages a{padding:11px 2px}
+@media (max-width:420px){.pages a{font-size:15px;letter-spacing:0}}
+.tt-top{display:flex;justify-content:space-between;align-items:center;gap:10px}
+.linkish{background:none;border:0;color:var(--mint);font-weight:800;text-decoration:underline;padding:6px 0;min-height:36px}
+.tt-rules p{margin:0 0 8px}.tt-rules ul{margin:0;padding-left:18px;display:flex;flex-direction:column;gap:6px;font-size:14px}
+.tt-card{padding:10px}
+.tt-board{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:4px}
+.tt-corner,.tt-h{display:flex;flex-direction:column;align-items:center;justify-content:center;min-width:0}
+.tt-corner b{font-family:var(--display);font-weight:800;font-size:20px;line-height:1}.tt-corner small{font-size:9px;color:var(--muted);text-transform:uppercase;letter-spacing:.5px}
+.tt-h .crest.sm{width:min(40px,9vw);height:min(40px,9vw);font-size:clamp(8.5px,2.4vw,11px)}
+.tt-cell{aspect-ratio:1;min-width:0;border-radius:9px;border:1.5px solid var(--edge);background:var(--bg);color:var(--txt);position:relative;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:2px;overflow:hidden}
+.tt-cell.m2{background:rgba(120,190,255,.10);border-color:rgba(120,190,255,.35)}
+.tt-cell.m3{background:rgba(255,190,80,.12);border-color:rgba(255,190,80,.45)}
+.tt-cell.star{background:rgba(186,245,118,.12);border-color:rgba(186,245,118,.5)}
+.tt-cell .mk{font-family:var(--display);font-weight:800;font-size:clamp(12px,3.6vw,16px);color:var(--muted)}
+.tt-cell.m3 .mk{color:var(--gold)}.tt-cell.m2 .mk{color:#8cc8ff}.tt-cell.star .mk{color:var(--lime)}
+.tt-cell b{font-size:clamp(8px,2.35vw,11px);font-weight:800;line-height:1.05;text-align:center;overflow-wrap:anywhere;max-width:100%}
+.tt-cell i,.tt-tile i{position:absolute;top:2px;right:4px;font-style:normal;font-size:9px;font-weight:800;color:var(--gold)}
+.tt-cell small{font-size:8px;color:var(--red);font-weight:800}
+.tt-cell.own0{background:var(--lime);color:var(--ink);border-color:var(--lime)}.tt-cell.own0 i{color:#35530f}
+.tt-cell.own1{background:var(--red);color:#2a0a0c;border-color:var(--red)}.tt-cell.own1 i{color:#5a1418}
+.tt-cell.own2{background:#8cc8ff;color:#0b2236;border-color:#8cc8ff}.tt-cell.own3{background:var(--gold);color:#2e2105;border-color:var(--gold)}
+.tt-cell.pend{background:#f3f1e6;color:#1b1b14;border:2px dashed var(--gold)}
+.tt-cell.bad{border:2px solid var(--red);animation:ttShake .4s}
+.tt-cell.last{box-shadow:0 0 0 2px var(--gold)}
+.tt-cell.peek{outline:3px solid var(--mint);outline-offset:1px}
+@keyframes ttShake{25%{transform:translateX(-3px)}75%{transform:translateX(3px)}}
+@media (prefers-reduced-motion:reduce){.tt-cell.bad{animation:none}}
+.tt-info{margin:10px 2px 6px;font-size:13.5px;color:var(--muted);min-height:2.6em}
+.tt-hand{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:6px}
+.tt-tile{position:relative;min-height:58px;border-radius:12px;border:0;background:#f3f1e6;color:#1b1b14;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:6px 4px;box-shadow:0 3px 0 #b9b39a;min-width:0}
+.tt-tile b{font-size:13px;font-weight:800;line-height:1.1;text-align:center;overflow-wrap:anywhere}
+.tt-tile small{font-size:10px;color:#5d5a4c;line-height:1.1;text-align:center;max-width:100%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.tt-tile i{color:#9a6b00;font-size:10.5px;top:3px;right:6px}
+.tt-tile.on{background:var(--gold);box-shadow:0 3px 0 #9a6b00;transform:translateY(-2px)}
+.tt-tile.swap.on{background:var(--red);color:#2a0a0c}
+.tt-actions{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:6px;margin-top:10px}
+.tt-actions button{min-height:46px;padding:8px 4px;font-size:14px}
+.tt-actions[hidden]{display:none}
+.tt-actions button:disabled{opacity:.45}
+.tt-msg{margin:8px 2px 0;font-weight:800;color:var(--mint);min-height:1.3em}.tt-msg.err{color:var(--red)}
+.tt-ans:empty{display:none}.tt-ans{margin-top:8px}
+.tt-tile{padding:15px 4px 6px}
+.tt-tile b{font-size:clamp(11px,3.3vw,13px);overflow-wrap:anywhere;word-break:break-word;hyphens:auto}
+.tt-info{margin-top:12px}
 </style>
 <div class="shell">
   <header class="top">
@@ -268,6 +312,7 @@ html.kb body{padding-bottom:60vh}
     <a href="#quiz" id="tabQuiz" aria-current="page">Quiz</a>
     <a href="#xox" id="tabXox">XOX</a>
     <a href="#duel" id="tabDuel">Düello</a>
+    <a href="#tas" id="tabTas">Taş Taş</a>
     <a href="#online" id="tabOnline" class="live">Online</a>
   </nav>
 
@@ -290,7 +335,6 @@ html.kb body{padding-bottom:60vh}
       <label class="sr" for="filterSel">Filtre</label>
       <select id="filterSel">
         <option value="all">Tüm eşleşmeler</option>
-        <option value="bursa">Bursaspor köprülü</option>
         <option value="wrong">Sadece yanlış yaptıklarım</option>
         <option value="club">Tek kulüp odaklı</option>
       </select>
@@ -434,6 +478,34 @@ html.kb body{padding-bottom:60vh}
     </section>
   </div>
 
+  <div id="pageTas" hidden>
+    <section class="xo-board" aria-label="Skor">
+      <div class="xo-side" id="ttSideA"><span class="xo-mark a">S</span><div><small>SEN</small><b id="ttScoreA">0</b></div></div>
+      <span class="xo-turn" id="ttTurn" aria-live="polite"></span>
+      <div class="xo-side right" id="ttSideB"><div><small>RAKİP</small><b id="ttScoreB">0</b></div><span class="xo-mark b">R</span></div>
+    </section>
+    <div class="toolbar">
+      <div class="seg" role="tablist" aria-label="Rakip seviyesi">
+        <button id="ttLvKolay" role="tab" aria-selected="false">Kolay</button>
+        <button id="ttLvOrta" role="tab" aria-selected="true">Orta</button>
+        <button id="ttLvZor" role="tab" aria-selected="false">Zor</button>
+      </div>
+      <button class="ghost" id="ttNew">Yeni oyun</button>
+    </div>
+    <div class="tt-top"><button type="button" class="linkish" id="ttRulesBtn">Nasıl oynanır?</button><span class="muted small" id="ttRecord"></span></div>
+    <div class="card tt-rules" id="ttRules" hidden>
+      <p><b>Taş Taş</b> futbolcu taşlarıyla Kelimelik. Her kare bir satır kulübüyle bir sütun kulübünün kesişimi. Bir taşı ancak o futbolcu iki kulüpte de oynadıysa o kareye koyabilirsin.</p>
+      <ul>
+        <li>Elinde 7 taş var. Sıranda bir ya da birkaç taş koy, sonra <b>Oyna</b>'ya bas.</li>
+        <li>İlk hamle ortadaki ★ kareden başlar. Sonra koyduğun taşlar tahtadaki taşlara yandan ya da üst/alttan bağlı olmalı.</li>
+        <li>Tek bir taş bile yanlış kareye konduysa bütün taşlar eline döner ve <b>sıran yanar</b>.</li>
+        <li>Puan: az bilinen futbolcu daha değerli (1–8). ×2 ve ×3 kareler taşın puanını katlar. Bir satırı ya da sütunu tamamlayan, o sıradaki taşların toplamını bonus alır. 7 taşın hepsini tek hamlede koymak +50.</li>
+        <li>Taş değiştirebilir ya da pas geçebilirsin; ikisi de sırayı geçirir. Taşlar bitince, tahta dolunca ya da herkes üst üste 3 kez boş geçince oyun biter; elde kalan taşların puanı düşülür.</li>
+      </ul>
+    </div>
+    <section class="card tt-card" id="ttView"></section>
+  </div>
+
   <div id="pageOnline" hidden>
     <section class="card du-card" id="onStart">
       <h2 class="du-title">Online oda</h2>
@@ -466,6 +538,7 @@ html.kb body{padding-bottom:60vh}
             <button role="tab" data-m="quiz" aria-selected="true">Quiz</button>
             <button role="tab" data-m="xox" aria-selected="false">XOX</button>
             <button role="tab" data-m="duel" aria-selected="false">Düello</button>
+            <button role="tab" data-m="tas" aria-selected="false">Taş Taş</button>
           </div>
           <p class="muted small" id="onModeHelp"></p>
           <button class="primary big" id="onGo">Başlat</button>
@@ -477,6 +550,7 @@ html.kb body{padding-bottom:60vh}
       <section class="card du-card" id="onGame" hidden>
         <div class="q-meta"><span class="tag" id="onTag"></span><span class="muted" id="onClock"></span></div>
         <div id="onStage"></div>
+        <div id="onTas" class="tt-online" hidden></div>
         <form id="onForm" autocomplete="off" hidden>
           <p class="muted small" id="onFormFor"></p>
           <div class="ac">
@@ -605,7 +679,6 @@ html.kb body{padding-bottom:60vh}
       return out;
     }
     function hasAnyClub(p, code) { return !!((p.c && p.c[code]) || (p.lc || []).indexOf(code) >= 0); }
-    function isBursa(p) { return !!clubsOf(p).BUR; }
     function answers(key) {
       var v = data.pairs[key];
       if (!v) return [];
@@ -618,8 +691,7 @@ html.kb body{padding-bottom:60vh}
     function featured(key, avoidId, rnd) {
       var ids = answers(key).map(function (a) { return byId[a.id]; });
       if (!ids.length) return null;
-      var bursa = ids.filter(isBursa);
-      var pool = bursa.length ? bursa : ids;
+      var pool = ids;
       // kaynaklı olanları öne al, sonra tanınırlık
       var sourced = pool.filter(function (p) { return data.pairs[key].p.indexOf(p.i) >= 0; });
       if (sourced.length) pool = sourced;
@@ -629,14 +701,13 @@ html.kb body{padding-bottom:60vh}
       return shuffle(best, rnd)[0];
     }
 
-    // 3 şık: 1 doğru + 2 kesin yanlış, hepsi aynı Bursa statüsünde
+    // 3 şık: 1 doğru + 2 kesin yanlış
     function options(key, correct, rnd) {
-      var t = teamsOf(key), valid = {}, b = isBursa(correct);
+      var t = teamsOf(key), valid = {};
       answerIds(key).forEach(function (i) { valid[i] = 1; });
       var cand = data.players.filter(function (p) {
         if (valid[p.i] || p.i === correct.i) return false;
         if (hasAnyClub(p, t[0]) && hasAnyClub(p, t[1])) return false; // olası ortak: asla yanlış şık yapma
-        if (isBursa(p) !== b) return false;
         return Object.keys(clubsOf(p)).length > 0;
       });
       var f0 = correct.f || 3;
@@ -739,14 +810,14 @@ html.kb body{padding-bottom:60vh}
       return shuffle(pool, seeded(String(code).toUpperCase())).slice(0, n);
     }
     return { data: data, byId: byId, keys: keys, norm: norm, sortedAnswers: sortedAnswers, suggestNames: suggestNames,
-      makeGrid: makeGrid, pairKey: pairKey, duelBotTeam: duelBotTeam, challengePairs: challengePairs, clubsOf: clubsOf, isBursa: isBursa, answers: answers,
+      makeGrid: makeGrid, pairKey: pairKey, duelBotTeam: duelBotTeam, challengePairs: challengePairs, clubsOf: clubsOf, answers: answers,
       answerIds: answerIds, featured: featured, options: options, check: check, teamsOf: teamsOf, hasAnyClub: hasAnyClub };
   }
 
   // ---- ilerleme / kuyruk ----
   var STATE_VERSION = 2;
   function freshState() {
-    return { v: STATE_VERSION, correct: 0, wrong: 0, streak: 0, best: 0, turn: 0, mode: "manual", filter: "all", club: "BUR",
+    return { v: STATE_VERSION, correct: 0, wrong: 0, streak: 0, best: 0, turn: 0, mode: "manual", filter: "all", club: "ADM",
       studied: {}, wrongQ: [], wrongSet: {}, recent: [], deck: [], lastFeat: {} };
   }
   function migrate(s) {
@@ -760,6 +831,7 @@ html.kb body{padding-bottom:60vh}
     }
     Object.keys(base).forEach(function (k) { if (s[k] !== undefined) base[k] = s[k]; });
     base.v = STATE_VERSION;
+    if (base.filter === "bursa") base.filter = "all"; // kaldırılan filtre
     return base;
   }
 
@@ -767,7 +839,6 @@ html.kb body{padding-bottom:60vh}
     return db.keys.filter(function (k) {
       if (!db.answers(k).length) return false;
       var t = db.teamsOf(k);
-      if (st.filter === "bursa") return db.answers(k).some(function (a) { return db.isBursa(db.byId[a.id]); });
       if (st.filter === "wrong") return !!st.wrongSet[k];
       if (st.filter === "club") return t.indexOf(st.club) >= 0;
       return true;
@@ -934,7 +1005,6 @@ html.kb body{padding-bottom:60vh}
   }
   function playerCard(p, key) {
     var t = db.teamsOf(key), html = "<div class='pl'><b>" + esc(p.n) + "</b>" + (p.nat ? " <span class='muted'>· " + esc(p.nat) + "</span>" : "") + stintsHTML(p, key);
-    if (db.isBursa(p) && t.indexOf("BUR") < 0) html += "<div class='bridge'>Bursa köprüsü: " + esc(p.n) + " Bursaspor'da da oynadı" + (db.clubsOf(p).BUR.y ? " (" + esc(db.clubsOf(p).BUR.y) + ")" : "") + ".</div>";
     return html + "</div>";
   }
   function yrs(p, c) { var r = db.clubsOf(p)[c]; return r && r.y ? r.y : "yıl yok"; }
@@ -943,19 +1013,16 @@ html.kb body{padding-bottom:60vh}
     opts = opts || {};
     var t = db.teamsOf(key), list = db.sortedAnswers(key), LIM = opts.limit || 10;
     if (!list.length) return "<p class='muted'>Bu eşleşmede kayıtlı ortak oyuncu yok.</p>";
-    var anyB = false;
     var rows = list.map(function (x, i) {
-      var p = x.p, b = db.isBursa(p) && t.indexOf("BUR") < 0; if (b) anyB = true;
+      var p = x.p;
       return "<li class='" + (p.i === markId ? "mine " : "") + (i >= LIM ? "more-row" : "") + "'" + (i >= LIM ? " hidden" : "") + ">" +
         "<span class='rk'>" + (i + 1) + "</span><span class='nm'><b>" + esc(p.n) + "</b>" +
         (p.i === markId ? " <span class='you'>senin cevabın</span>" : "") +
-        (b ? " <span class='bb' title='Bursaspor geçmişi var'>Bursa</span>" : "") +
         (x.src === "legacy" ? " <span class='muted'>(kaynaksız)</span>" : "") +
         "<small>" + esc(T[t[0]]) + " " + esc(yrs(p, t[0])) + " · " + esc(T[t[1]]) + " " + esc(yrs(p, t[1])) + "</small></span></li>";
     }).join("");
     return "<div class='answers'><h3>Doğru cevaplar <span class='muted'>(" + list.length + ") · en tanınandan aza</span></h3><ol>" + rows + "</ol>" +
-      (list.length > LIM ? "<button type='button' class='ghost more-btn' data-more>Tümünü göster (" + list.length + ")</button>" : "") +
-      (anyB ? "<p class='muted legend'><span class='bb'>Bursa</span> Bursaspor'da da oynadı</p>" : "") + "</div>";
+      (list.length > LIM ? "<button type='button' class='ghost more-btn' data-more>Tümünü göster (" + list.length + ")</button>" : "") + "</div>";
   }
   document.addEventListener("click", function (e) {
     var b = e.target.closest && e.target.closest("[data-more]");
@@ -1162,8 +1229,9 @@ html.kb body{padding-bottom:60vh}
   window.O26UI = { db: db, DATA: DATA, T: T, esc: esc, setTeam: setTeam, COLORS: COLORS, lum: lum, contrast: contrast,
     attachAC: attachAC, answersHTML: answersHTML, fatal: fatal };
   function route() {
-    var h = location.hash === "#xox" ? "xox" : /^#duel/.test(location.hash) ? "duel" : /^#online/.test(location.hash) ? "online" : "quiz";
-    $("pageQuiz").hidden = h !== "quiz"; $("pageXox").hidden = h !== "xox"; $("pageDuel").hidden = h !== "duel"; $("pageOnline").hidden = h !== "online";
+    var h = location.hash === "#xox" ? "xox" : /^#duel/.test(location.hash) ? "duel" : /^#online/.test(location.hash) ? "online" : location.hash === "#tas" ? "tas" : "quiz";
+    $("pageQuiz").hidden = h !== "quiz"; $("pageXox").hidden = h !== "xox"; $("pageDuel").hidden = h !== "duel"; $("pageOnline").hidden = h !== "online"; $("pageTas").hidden = h !== "tas";
+    $("tabTas").setAttribute("aria-current", h === "tas" ? "page" : "false");
     $("tabOnline").setAttribute("aria-current", h === "online" ? "page" : "false");
     $("tabQuiz").setAttribute("aria-current", h === "quiz" ? "page" : "false");
     $("tabXox").setAttribute("aria-current", h === "xox" ? "page" : "false");
@@ -1689,12 +1757,389 @@ html.kb body{padding-bottom:60vh}
   window.O26CH = { busy: function () { return !!run; } };
 })();
 </script>
+<script>/* Taş Taş: futbolcu taşlarıyla Kelimelik. 5×5 kulüp tahtası, elde 7 taş, torba, çarpanlı kareler.
+   Bir taş ancak o futbolcu satır ve sütun kulübünün ikisinde de oynadıysa o kareye konabilir.
+   Hamlede tek bir yanlış taş varsa bütün taşlar ele döner ve sıra yanar. Tarayıcıda window.O26TT, Node'da module.exports. */
+(function (root) {
+  "use strict";
+  var O = typeof module !== "undefined" && module.exports ? require("./core.js") : root.O26;
+  var N = 5, HAND = 7, BINGO = 50, PER_CELL = 2, TOP = 5;
+  // kare çarpanları: 3 = taş ×3, 2 = taş ×2, ortadaki yıldız ×2 ve başlangıç karesi
+  var MULT = [3, 1, 2, 1, 3,
+              1, 2, 1, 2, 1,
+              2, 1, 2, 1, 2,
+              1, 2, 1, 2, 1,
+              3, 1, 2, 1, 3];
+  var CENTER = 12;
+  var LEVELS = { kolay: { know: 0.45, max: 1 }, orta: { know: 0.65, max: 2 }, zor: { know: 0.85, max: 4 } };
+
+  function value(p) { var f = p && p.f || 3; return f >= 5 ? 1 : f === 4 ? 2 : f === 3 ? 3 : f === 2 ? 5 : 8; }
+  function keyOf(db, g, c) { return db.pairKey(g.rows[Math.floor(c / N)], g.cols[c % N]); }
+  function fits(db, g, c, pid) { return db.answerIds(keyOf(db, g, c)).indexOf(pid) >= 0; }
+
+  function create(db, nPlayers, rnd) {
+    rnd = rnd || Math.random; nPlayers = nPlayers || 2;
+    var order = db.data.order, rows, cols;
+    for (var t = 0; t < 5000; t++) {
+      var s = O.shuffle(order, rnd); rows = s.slice(0, N); cols = s.slice(N, 2 * N);
+      var ok = rows.every(function (r) { return cols.every(function (c) { var v = db.data.pairs[db.pairKey(r, c)]; return v && v.s === "cx" && v.p.length >= 3; }); });
+      if (ok) break;
+    }
+    var g = { rows: rows, cols: cols, cells: [], hands: [], bag: [], sc: [], turn: 0, over: false, msg: "", last: null, zeros: 0, moves: 0, n: nPlayers };
+    for (var i = 0; i < N * N; i++) g.cells.push(null);
+    // torba: her kareden en tanınan 5 cevaptan 2'si (tekrarsız)
+    var seen = {};
+    for (var c = 0; c < N * N; c++) {
+      var top = db.sortedAnswers(keyOf(db, g, c)).filter(function (x) { return x.src === "cx"; }).slice(0, TOP).map(function (x) { return x.p.i; });
+      O.shuffle(top, rnd).filter(function (id) { return !seen[id]; }).slice(0, PER_CELL).forEach(function (id) { seen[id] = 1; g.bag.push(id); });
+    }
+    // yıldız karesine uyan en az 3 taş olsun; ilk oyuncunun elinde de en az biri bulunsun ki oyun açılabilsin
+    var star = db.sortedAnswers(keyOf(db, g, CENTER)).filter(function (x) { return x.src === "cx"; }).map(function (x) { return x.p.i; });
+    star.filter(function (id) { return !seen[id]; }).slice(0, Math.max(0, 3 - star.filter(function (id) { return seen[id]; }).length)).forEach(function (id) { seen[id] = 1; g.bag.push(id); });
+    g.bag = O.shuffle(g.bag, rnd);
+    for (var k = 0; k < nPlayers; k++) { g.hands.push([]); g.sc.push(0); draw(g, k); }
+    if (!g.hands[0].some(function (id) { return star.indexOf(id) >= 0; })) {
+      var bi = g.bag.findIndex(function (id) { return star.indexOf(id) >= 0; });
+      if (bi >= 0) { var t = g.bag[bi]; g.bag[bi] = g.hands[0][0]; g.hands[0][0] = t; }
+    }
+    return g;
+  }
+  function draw(g, k) { while (g.hands[k].length < HAND && g.bag.length) g.hands[k].push(g.bag.pop()); }
+  function nb(c) { var r = Math.floor(c / N), q = c % N, o = []; if (r > 0) o.push(c - N); if (r < N - 1) o.push(c + N); if (q > 0) o.push(c - 1); if (q < N - 1) o.push(c + 1); return o; }
+
+  // Geometri: ilk hamle yıldızı kapsar; sonra yeni taşların hepsi mevcut taşlarla tek bağlı grup olmalı
+  function geometry(g, cells) {
+    if (!cells.length) return "Önce tahtaya taş koy.";
+    var set = {}, i;
+    for (i = 0; i < cells.length; i++) {
+      var c = cells[i];
+      if (c < 0 || c >= N * N || g.cells[c]) return "Bu kare dolu.";
+      if (set[c]) return "Aynı kareye iki taş konmaz."; set[c] = 1;
+    }
+    var empty = g.cells.every(function (x) { return !x; });
+    if (empty && !set[CENTER]) return "İlk hamlede ortadaki ★ kareyi kullan.";
+    var occ = {}; g.cells.forEach(function (x, c) { if (x) occ[c] = 1; }); cells.forEach(function (c) { occ[c] = 1; });
+    var start = empty ? CENTER : g.cells.findIndex(function (x) { return x; });
+    var stack = [start], vis = {}; vis[start] = 1;
+    while (stack.length) { var cur = stack.pop(); nb(cur).forEach(function (m) { if (occ[m] && !vis[m]) { vis[m] = 1; stack.push(m); } }); }
+    for (var c2 in occ) if (!vis[c2]) return "Taşlar tahtadaki taşlara bağlı olmalı (yan ya da üst/alt komşu).";
+    return null;
+  }
+
+  function score(db, g, placed) {
+    var pts = 0, lines = [], set = {};
+    placed.forEach(function (m) { set[m.c] = 1; pts += value(db.byId[m.t]) * MULT[m.c]; });
+    var after = g.cells.map(function (x, c) { return x ? x.t : (set[c] ? placed.filter(function (m) { return m.c === c; })[0].t : null); });
+    for (var r = 0; r < N; r++) {
+      var row = [], col = [];
+      for (var q = 0; q < N; q++) { row.push(r * N + q); col.push(q * N + r); }
+      [row, col].forEach(function (line, isCol) {
+        if (line.some(function (c) { return set[c]; }) && line.every(function (c) { return after[c] != null; })) {
+          var b = line.reduce(function (s, c) { return s + value(db.byId[after[c]]); }, 0);
+          pts += b; lines.push({ col: !!isCol, i: r, b: b });
+        }
+      });
+    }
+    var bingo = placed.length >= HAND ? BINGO : 0;
+    return { pts: pts + bingo, lines: lines, bingo: bingo };
+  }
+
+  function nextTurn(g) {
+    g.moves++;
+    if (g.over) return;
+    var full = g.cells.every(Boolean);
+    var emptied = g.hands.some(function (h) { return !h.length; }) && !g.bag.length;
+    if (full || emptied || g.zeros >= 3 * g.n) { finish(g, full ? "Tahta doldu." : emptied ? "Taşlar bitti." : "Üst üste kimse taş koyamadı."); return; }
+    g.turn = (g.turn + 1) % g.n;
+  }
+  function finish(g, why) {
+    g.over = true; g.end = why;
+    g.left = g.hands.map(function (h) { return h.slice(); });
+  }
+  function handPenalty(db, g) {
+    // bitişte eldeki taşların puanı düşülür
+    g.hands.forEach(function (h, k) { g.sc[k] -= h.reduce(function (s, id) { return s + value(db.byId[id]); }, 0); });
+  }
+
+  // Hamle: placed = [{c, t}] — dönüş {ok, pts, bad[], err}
+  function play(db, g, k, placed) {
+    if (g.over || g.turn !== k) return { ok: false, err: "Sıra sende değil." };
+    var hand = g.hands[k].slice();
+    for (var i = 0; i < placed.length; i++) { var j = hand.indexOf(placed[i].t); if (j < 0) return { ok: false, err: "Bu taş elinde yok." }; hand.splice(j, 1); }
+    var gerr = geometry(g, placed.map(function (m) { return m.c; }));
+    if (gerr) return { ok: false, err: gerr };
+    var bad = placed.filter(function (m) { return !fits(db, g, m.c, m.t); });
+    if (bad.length) {
+      g.zeros++;
+      g.last = { k: k, burn: true, bad: bad.map(function (m) { return { c: m.c, t: m.t }; }), cells: [] };
+      g.msg = (bad.length === 1 ? db.byId[bad[0].t].n + " bu kareye uymuyor" : bad.length + " taş yerine uymuyor") + ", sıra yandı.";
+      nextTurn(g); if (g.over) handPenalty(db, g);
+      return { ok: true, burn: true, bad: g.last.bad, pts: 0 };
+    }
+    var s = score(db, g, placed);
+    placed.forEach(function (m) { g.cells[m.c] = { t: m.t, o: k }; });
+    g.hands[k] = hand; draw(g, k);
+    g.sc[k] += s.pts; g.zeros = 0;
+    g.last = { k: k, cells: placed.map(function (m) { return m.c; }), pts: s.pts, lines: s.lines, bingo: s.bingo };
+    g.msg = "+" + s.pts + " puan" + (s.lines.length ? " · " + s.lines.length + " sıra tamamlandı" : "") + (s.bingo ? " · 7 taş bonusu!" : "");
+    nextTurn(g); if (g.over) handPenalty(db, g);
+    return { ok: true, pts: s.pts, lines: s.lines };
+  }
+  function swap(db, g, k, tiles, rnd) {
+    if (g.over || g.turn !== k) return { ok: false, err: "Sıra sende değil." };
+    if (!tiles.length) return { ok: false, err: "Değiştirilecek taşı seç." };
+    if (g.bag.length < tiles.length) return { ok: false, err: "Torbada yeterli taş yok." };
+    var hand = g.hands[k];
+    for (var i = 0; i < tiles.length; i++) if (hand.indexOf(tiles[i]) < 0) return { ok: false, err: "Bu taş elinde yok." };
+    tiles.forEach(function (t) { hand.splice(hand.indexOf(t), 1); });
+    draw(g, k);
+    g.bag = O.shuffle(g.bag.concat(tiles), rnd || Math.random);
+    g.zeros++; g.last = { k: k, swap: tiles.length, cells: [] }; g.msg = tiles.length + " taş değiştirildi.";
+    nextTurn(g); if (g.over) handPenalty(db, g);
+    return { ok: true };
+  }
+  function pass(db, g, k) {
+    if (g.over || g.turn !== k) return { ok: false, err: "Sıra sende değil." };
+    g.zeros++; g.last = { k: k, pass: true, cells: [] }; g.msg = "Pas geçildi.";
+    nextTurn(g); if (g.over) handPenalty(db, g);
+    return { ok: true };
+  }
+
+  // Bot: bildiği taşları (ünlü olanı daha olası bilir) en çok puan getiren bağlı karelere koyar
+  function botMove(db, g, k, level, rnd) {
+    rnd = rnd || Math.random;
+    var L = LEVELS[level] || LEVELS.orta;
+    var known = g.hands[k].filter(function (id) { var f = db.byId[id].f || 3; return rnd() < Math.min(0.97, L.know + (f - 3) * 0.08); });
+    var placed = [], used = {}, cellsUsed = {};
+    var temp = { cells: g.cells.slice() };
+    for (var step = 0; step < L.max; step++) {
+      var best = null;
+      known.forEach(function (id) {
+        if (used[id]) return;
+        for (var c = 0; c < N * N; c++) {
+          if (temp.cells[c] || cellsUsed[c] || !fits(db, g, c, id)) continue;
+          var cells = placed.map(function (m) { return m.c; }).concat([c]);
+          if (geometry(g, cells)) continue;
+          var v = value(db.byId[id]) * MULT[c] + rnd() * 0.5;
+          if (!best || v > best.v) best = { c: c, t: id, v: v };
+        }
+      });
+      if (!best) break;
+      placed.push({ c: best.c, t: best.t }); used[best.t] = 1; cellsUsed[best.c] = 1;
+    }
+    if (placed.length) return { a: "play", placed: placed };
+    // hiçbir şey koyamıyorsa: torbada taş varsa en değersiz 3 taşı değiştir, yoksa pas
+    if (g.bag.length >= 3) {
+      var worst = g.hands[k].slice().sort(function (a, b) { return value(db.byId[a]) - value(db.byId[b]); }).slice(0, 3);
+      return { a: "swap", tiles: worst };
+    }
+    return { a: "pass" };
+  }
+
+  function canPlaceAny(db, g, k) {
+    return g.hands[k].some(function (id) { for (var c = 0; c < N * N; c++) if (!g.cells[c] && fits(db, g, c, id) && !geometry(g, [c])) return true; return false; });
+  }
+
+  var api = { create: create, play: play, swap: swap, pass: pass, botMove: botMove, geometry: geometry, score: score, value: value, fits: fits, keyOf: keyOf,
+    canPlaceAny: canPlaceAny, MULT: MULT, CENTER: CENTER, N: N, HAND: HAND, BINGO: BINGO, LEVELS: LEVELS };
+  if (typeof module !== "undefined" && module.exports) module.exports = api; else root.O26TT = api;
+})(this);
+</script>
+<script>/* Taş Taş arayüzü: paylaşılan tahta bileşeni (TasView) + bota karşı sayfa. Online oda da TasView'u kullanır. */
+(function () {
+  "use strict";
+  var U = window.O26UI, O = window.O26, TT = window.O26TT;
+  if (!U || !O || !TT) return;
+  var db = U.db, T = U.T, esc = U.esc;
+  var $ = function (id) { return document.getElementById(id); };
+  var N = TT.N;
+
+  function crest(code) {
+    var c = U.COLORS[code] || ["#333", "#fff"];
+    var txt = U.contrast(c[0], c[1]) >= 4.5 ? c[1] : (U.lum(c[0]) < 0.35 ? "#ffffff" : "#111111");
+    return "<span class='crest sm' title='" + esc(T[code]) + "' style='--c1:" + c[0] + ";--c2:" + c[1] + ";color:" + txt + "'>" + code + "</span>";
+  }
+  function short(p) {
+    var n = p.n.replace(/\s*\(.*\)$/, ""), w = n.split(/\s+/);
+    return w.length > 1 ? w[w.length - 1] : n;
+  }
+  function tileHTML(id, cls, extra) {
+    var p = db.byId[id];
+    return "<button type='button' class='tt-tile " + (cls || "") + "' data-t='" + id + "'" + (extra || "") + "><b>" + esc(short(p)) + "</b><small>" + esc(p.n.split(/\s+/).length > 1 ? p.n.replace(/\s*\(.*\)$/, "").split(/\s+/).slice(0, -1).join(" ") : "") + "</small><i>" + TT.value(p) + "</i></button>";
+  }
+
+  /* TasView: root içinde tahta + el + düğmeler. cb = {onPlay(placed), onSwap(tiles), onPass()} */
+  function TasView(root, cb) {
+    var g = null, ctx = {}, pending = [], sel = null, swapMode = false, swapSel = [], stamp = "", peek = -1, flash = null;
+    root.innerHTML =
+      "<div class='tt-board' role='grid' aria-label='Taş Taş tahtası'></div>" +
+      "<p class='tt-info' aria-live='polite'></p>" +
+      "<div class='tt-hand' role='group' aria-label='Elindeki taşlar'></div>" +
+      "<div class='tt-actions'>" +
+      "<button type='button' class='primary' data-act='play'>Oyna</button>" +
+      "<button type='button' class='ghost' data-act='undo'>Geri al</button>" +
+      "<button type='button' class='ghost' data-act='swap'>Değiştir</button>" +
+      "<button type='button' class='ghost' data-act='pass'>Pas</button></div>" +
+      "<p class='tt-msg' role='status'></p><div class='tt-ans'></div>";
+    var B = root.querySelector(".tt-board"), H = root.querySelector(".tt-hand"), I = root.querySelector(".tt-info"),
+        A = root.querySelector(".tt-actions"), M = root.querySelector(".tt-msg"), ANS = root.querySelector(".tt-ans");
+
+    function myHand() { return ctx.me >= 0 && g ? g.hands[ctx.me] : []; }
+    function inHand() { var used = pending.map(function (m) { return m.t; }); return myHand().filter(function (t) { return used.indexOf(t) < 0; }); }
+    function myTurn() { return !!(g && !g.over && ctx.me >= 0 && g.turn === ctx.me && ctx.canAct !== false); }
+    function cellName(c) { return T[g.rows[Math.floor(c / N)]] + " × " + T[g.cols[c % N]]; }
+
+    function draw() {
+      if (!g) return;
+      var lastCells = g.last && g.last.cells || [], bad = (flash && flash.bad) || [];
+      var h = "<div class='tt-corner'><b>" + g.bag.length + "</b><small>torba</small></div>";
+      g.cols.forEach(function (c) { h += "<div class='tt-h'>" + crest(c) + "</div>"; });
+      for (var r = 0; r < N; r++) {
+        h += "<div class='tt-h row'>" + crest(g.rows[r]) + "</div>";
+        for (var q = 0; q < N; q++) {
+          var c = r * N + q, x = g.cells[c], pm = pending.filter(function (m) { return m.c === c; })[0];
+          var badHere = bad.filter(function (b) { return b.c === c; })[0];
+          var cls = "tt-cell m" + TT.MULT[c] + (c === TT.CENTER ? " star" : "") + (x ? " own" + (ctx.me >= 0 ? (x.o === ctx.me ? 0 : 1) : x.o) : "") + (pm ? " pend" : "") + (badHere ? " bad" : "") + (lastCells.indexOf(c) >= 0 ? " last" : "") + (c === peek ? " peek" : "");
+          var inner;
+          if (x) { var p = db.byId[x.t]; inner = "<b>" + esc(short(p)) + "</b><i>" + TT.value(p) + "</i>"; }
+          else if (pm) { var pp = db.byId[pm.t]; inner = "<b>" + esc(short(pp)) + "</b><i>" + TT.value(pp) + "</i>"; }
+          else if (badHere) { inner = "<b>" + esc(short(db.byId[badHere.t])) + "</b><small>uymadı</small>"; }
+          else inner = c === TT.CENTER ? "<span class='mk'>★</span>" : TT.MULT[c] > 1 ? "<span class='mk'>×" + TT.MULT[c] + "</span>" : "";
+          h += "<button type='button' class='" + cls + "' data-c='" + c + "' aria-label='" + esc(cellName(c) + (x ? ": " + db.byId[x.t].n : "")) + "'>" + inner + "</button>";
+        }
+      }
+      B.innerHTML = h;
+      var hand = ctx.me >= 0 ? inHand() : [];
+      H.hidden = ctx.me < 0;
+      H.innerHTML = hand.map(function (t) {
+        var on = swapMode ? swapSel.indexOf(t) >= 0 : sel === t;
+        return tileHTML(t, (on ? "on" : "") + (swapMode ? " swap" : ""), " aria-pressed='" + on + "'");
+      }).join("") || (ctx.me >= 0 ? "<p class='muted small'>Elinde taş kalmadı.</p>" : "");
+      var turn = myTurn();
+      A.hidden = !turn;
+      A.querySelector("[data-act=play]").textContent = swapMode ? "Seçilenleri değiştir (" + swapSel.length + ")" : pending.length ? "Oyna (" + pending.length + ")" : "Oyna";
+      A.querySelector("[data-act=play]").disabled = swapMode ? !swapSel.length || g.bag.length < swapSel.length : !pending.length;
+      A.querySelector("[data-act=undo]").textContent = swapMode ? "Vazgeç" : "Geri al";
+      A.querySelector("[data-act=undo]").disabled = !swapMode && !pending.length;
+      A.querySelector("[data-act=swap]").hidden = swapMode;
+      A.querySelector("[data-act=swap]").disabled = g.bag.length === 0;
+      A.querySelector("[data-act=pass]").hidden = swapMode;
+      var info;
+      if (g.over) info = "Oyun bitti: " + (g.end || "") + " Bir kareye dokunup tüm doğru cevapları görebilirsin.";
+      else if (!turn) info = ctx.waitText || "Rakip düşünüyor…";
+      else if (swapMode) info = "Değiştirmek istediğin taşlara dokun. Sıran geçer.";
+      else if (sel != null) info = db.byId[sel].n + " (" + TT.value(db.byId[sel]) + " puan) seçili: koyacağın kareye dokun.";
+      else if (pending.length) info = "İstersen başka taş da koy, sonra Oyna'ya bas. Taşlar birbirine ve tahtadakilere bağlı olmalı.";
+      else info = g.cells.every(function (x) { return !x; }) ? "Elinden bir taş seç ve ortadaki ★ kareye koy." : "Elinden taş seç, bağlı boş bir kareye koy. Futbolcu iki kulüpte de oynamış olmalı.";
+      I.textContent = info;
+      var m = flash && flash.msg || g.msg || "";
+      M.textContent = m; M.className = "tt-msg" + (flash && flash.err ? " err" : "");
+      if (g.over && peek >= 0) ANS.innerHTML = "<p class='muted small'>" + esc(cellName(peek)) + "</p>" + U.answersHTML(TT.keyOf(db, g, peek), g.cells[peek] && g.cells[peek].t, { limit: 8 });
+      else ANS.innerHTML = "";
+    }
+
+    H.addEventListener("click", function (e) {
+      var b = e.target.closest(".tt-tile"); if (!b || !myTurn()) return;
+      var t = +b.dataset.t;
+      if (swapMode) { var i = swapSel.indexOf(t); if (i >= 0) swapSel.splice(i, 1); else swapSel.push(t); }
+      else sel = sel === t ? null : t;
+      flash = null; draw();
+    });
+    B.addEventListener("click", function (e) {
+      var b = e.target.closest(".tt-cell"); if (!b || !g) return;
+      var c = +b.dataset.c;
+      if (g.over) { peek = c; draw(); return; }
+      if (!myTurn() || swapMode) { flash = { msg: cellName(c) }; draw(); return; }
+      var pi = pending.findIndex(function (m) { return m.c === c; });
+      if (pi >= 0) { pending.splice(pi, 1); flash = null; draw(); return; }
+      if (g.cells[c]) { flash = { msg: cellName(c) + ": " + db.byId[g.cells[c].t].n }; draw(); return; }
+      if (sel == null) { flash = { msg: cellName(c) + (TT.MULT[c] > 1 ? " · ×" + TT.MULT[c] : "") }; draw(); return; }
+      pending.push({ c: c, t: sel }); sel = null;
+      var gerr = TT.geometry(g, pending.map(function (m) { return m.c; }));
+      flash = gerr && pending.length ? { msg: gerr, err: true } : null;
+      draw();
+    });
+    A.addEventListener("click", function (e) {
+      var b = e.target.closest("[data-act]"); if (!b || !myTurn()) return;
+      var act = b.dataset.act;
+      if (act === "play") {
+        if (swapMode) { var tiles = swapSel.slice(); swapMode = false; swapSel = []; cb.onSwap(tiles); return; }
+        var gerr = TT.geometry(g, pending.map(function (m) { return m.c; }));
+        if (gerr) { flash = { msg: gerr, err: true }; draw(); return; }
+        var placed = pending.slice(); cb.onPlay(placed);
+      } else if (act === "undo") { if (swapMode) { swapMode = false; swapSel = []; } else { pending = []; sel = null; } flash = null; draw(); }
+      else if (act === "swap") { pending = []; sel = null; swapMode = true; swapSel = []; flash = null; draw(); }
+      else if (act === "pass") { pending = []; sel = null; cb.onPass(); }
+    });
+
+    this.update = function (ng, nctx) {
+      var st = ng ? ng.moves + ":" + ng.turn : "";
+      if (st !== stamp) {
+        // yeni hamle: bekleyen taşları sıfırla; yanlış hamleyse yanlış taşları kısa süre göster
+        stamp = st; pending = []; sel = null; swapMode = false; swapSel = [];
+        flash = ng && ng.last && ng.last.burn ? { bad: ng.last.bad, msg: ng.msg, err: true } : null;
+        if (!ng || !ng.over) peek = -1;
+      }
+      g = ng; ctx = nctx || {}; draw();
+    };
+    this.reset = function () { stamp = ""; peek = -1; flash = null; };
+  }
+  window.O26TTV = { TasView: TasView, short: short };
+
+  // ---- bota karşı sayfa ----
+  var KEY = "pasla.tas";
+  var S = load() || { lv: "orta", g: null, w: 0, l: 0 };
+  var botT = null;
+  function load() { try { return JSON.parse(localStorage.getItem(KEY) || "null"); } catch (e) { return null; } }
+  function save() { try { localStorage.setItem(KEY, JSON.stringify(S)); } catch (e) {} }
+  var view = new TasView($("ttView"), {
+    onPlay: function (placed) { var r = TT.play(db, S.g, 0, placed); if (!r.ok) { alertMsg(r.err); return; } after(); },
+    onSwap: function (tiles) { var r = TT.swap(db, S.g, 0, tiles); if (!r.ok) { alertMsg(r.err); return; } after(); },
+    onPass: function () { TT.pass(db, S.g, 0); after(); }
+  });
+  function alertMsg(t) { S.g.msg = t; render(); }
+  function after() {
+    save(); render();
+    if (S.g.over) { done(); return; }
+    if (S.g.turn === 1) { clearTimeout(botT); botT = setTimeout(botTurn, 1100); }
+  }
+  function botTurn() {
+    if (!S.g || S.g.over || S.g.turn !== 1) return;
+    var m = TT.botMove(db, S.g, 1, S.lv);
+    if (m.a === "play") TT.play(db, S.g, 1, m.placed); else if (m.a === "swap") TT.swap(db, S.g, 1, m.tiles); else TT.pass(db, S.g, 1);
+    S.g.msg = "Rakip: " + S.g.msg;
+    after();
+  }
+  function done() {
+    var w = S.g.sc[0] > S.g.sc[1] ? 1 : S.g.sc[0] < S.g.sc[1] ? -1 : 0;
+    if (!S.g.counted) { S.g.counted = true; if (w > 0) S.w++; else if (w < 0) S.l++; save(); }
+    $("ttTurn").textContent = w > 0 ? "🏆 Kazandın" : w < 0 ? "Rakip kazandı" : "Berabere";
+  }
+  function render() {
+    var g = S.g;
+    $("ttScoreA").textContent = g ? g.sc[0] : 0; $("ttScoreB").textContent = g ? g.sc[1] : 0;
+    $("ttSideA").classList.toggle("on", !!(g && !g.over && g.turn === 0)); $("ttSideB").classList.toggle("on", !!(g && !g.over && g.turn === 1));
+    if (g && !g.over) $("ttTurn").textContent = g.turn === 0 ? "Sıra sende" : "Rakip oynuyor";
+    ["Kolay", "Orta", "Zor"].forEach(function (n) { $("ttLv" + n).setAttribute("aria-selected", String(n.toLowerCase() === S.lv)); });
+    $("ttRecord").textContent = S.w + "G " + S.l + "M";
+    if (g) view.update(g, { me: 0, waitText: "Rakip düşünüyor…" });
+    if (g && g.over) done();
+  }
+  function newGame() { clearTimeout(botT); S.g = TT.create(db, 2); S.g.turn = 0; view.reset(); save(); render(); }
+  ["Kolay", "Orta", "Zor"].forEach(function (n) { $("ttLv" + n).addEventListener("click", function () { S.lv = n.toLowerCase(); save(); render(); }); });
+  $("ttNew").addEventListener("click", newGame);
+  $("ttRulesBtn").addEventListener("click", function () { $("ttRules").hidden = !$("ttRules").hidden; });
+  if (!S.g) newGame(); else { render(); if (!S.g.over && S.g.turn === 1) botT = setTimeout(botTurn, 800); }
+})();
+</script>
 <script>/* Online oda: odayı kuranın (host) cihazında çalışan tek yetkili durum makinesi.
    reduce(db, st, act, now, rnd) durumu yerinde değiştirir; yayınlanması gereken bir değişiklik olduysa true döner.
    Tarayıcıda window.O26ON, Node'da module.exports. */
 (function (root) {
   "use strict";
-  var O = typeof module !== "undefined" && module.exports ? require("./core.js") : root.O26;
+  var NODE = typeof module !== "undefined" && module.exports;
+  var O = NODE ? require("./core.js") : root.O26, TT = NODE ? require("./tastas_core.js") : root.O26TT;
+  var TAS_T = 120000;
 
   var QUIZ_N = 10, QUIZ_T = 30000, QUIZ_CD = 3000, REVEAL = 5000;
   var XOX_T = 45000, XOX_MAXPASS = 8;
@@ -1719,13 +2164,13 @@ html.kb body{padding-bottom:60vh}
     if (!st.players[id] || id === st.host) return false;
     delete st.players[id]; st.order = st.order.filter(function (x) { return x !== id; });
     var g = st.g;
-    if (g && (g.m === "xox" || g.m === "duel") && g.p.indexOf(id) >= 0 && !isOver(g)) {
-      if (g.m === "xox") { g.over = true; g.msg = "Rakip odadan ayrıldı, oyun bitti."; }
+    if (g && (g.m === "xox" || g.m === "duel" || g.m === "tas") && g.p.indexOf(id) >= 0 && !isOver(g)) {
+      if (g.m === "xox" || g.m === "tas") { g.over = true; g.msg = "Rakip odadan ayrıldı, oyun bitti."; g.end = g.msg; }
       else { g.ph = "end"; g.note = "Rakip odadan ayrıldı, maç bitti."; }
     }
     return true;
   }
-  function isOver(g) { return g.m === "xox" ? g.over : g.m === "duel" ? g.ph === "end" : g.ph === "end"; }
+  function isOver(g) { return g.m === "xox" || g.m === "tas" ? g.over : g.ph === "end"; }
   function okPair(db, k) { var v = db.data.pairs[k]; return !!(v && v.s === "cx" && v.p.length >= 3); }
 
   // ---- Quiz: herkes aynı soruya yarışır ----
@@ -1790,10 +2235,12 @@ html.kb body{padding-bottom:60vh}
         if (id !== st.host) return false;
         var m = act.m;
         if (m === "quiz") { quizStart(db, st, now, rnd); st.mode = m; ch = true; break; }
-        if (m === "xox" || m === "duel") {
+        if (m === "xox" || m === "duel" || m === "tas") {
           var p = (act.p || []).filter(function (x) { return st.players[x]; });
           if (p.length !== 2 || p[0] === p[1]) { st.msg = "XOX ve Düello için odadan iki oyuncu seç."; return true; }
-          if (m === "xox") xoxStart(db, st, p, now, rnd); else duelStart(st, p, now);
+          if (m === "xox") xoxStart(db, st, p, now, rnd);
+          else if (m === "tas") { var tg = TT.create(db, 2, rnd); tg.m = "tas"; tg.p = p; tg.dl = now + TAS_T; st.g = tg; }
+          else duelStart(st, p, now);
           st.mode = m; st.msg = ""; ch = true;
         }
         break;
@@ -1831,6 +2278,15 @@ html.kb body{padding-bottom:60vh}
         xoxAfter(st, now); ch = true; break;
       }
       // duel
+      // taş taş
+      case "tp": case "ts": case "tq": {
+        if (!g || g.m !== "tas" || g.over) return false;
+        var tk = g.p.indexOf(id); if (tk < 0 || g.turn !== tk) return false;
+        var res = act.a === "tp" ? TT.play(db, g, tk, (act.placed || []).map(function (m) { return { c: m.c | 0, t: m.t | 0 }; }))
+          : act.a === "ts" ? TT.swap(db, g, tk, (act.tiles || []).map(function (t) { return t | 0; }), rnd) : TT.pass(db, g, tk);
+        if (!res.ok) return false;
+        g.msg = name(st, id) + ": " + g.msg; g.dl = now + TAS_T; ch = true; break;
+      }
       case "dk": {
         if (!g || g.m !== "duel" || g.ph !== "pick") return false;
         var ki = g.p.indexOf(id); if (ki < 0 || db.data.order.indexOf(act.team) < 0 || g.used[ki].indexOf(act.team) >= 0) return false;
@@ -1865,6 +2321,8 @@ html.kb body{padding-bottom:60vh}
       }
     } else if (g.m === "xox") {
       if (!g.over && now >= g.dl) { g.passes++; g.msg = name(st, g.p[g.turn]) + " süresini doldurdu, sıra geçti."; xoxAfter(st, now); ch = true; }
+    } else if (g.m === "tas") {
+      if (!g.over && now >= g.dl) { var who = name(st, g.p[g.turn]); TT.pass(db, g, g.turn); g.msg = who + " süresini doldurdu, sıra geçti."; g.dl = now + TAS_T; ch = true; }
     } else if (g.m === "duel") {
       if (g.ph === "pick" && now >= g.dl) { duelResolve(db, st, now, rnd); ch = true; }
       else if (g.ph === "race" && now >= g.dl) { g.win = { w: -1 }; g.ph = "rev"; g.until = now + REVEAL; ch = true; }
@@ -1889,7 +2347,7 @@ html.kb body{padding-bottom:60vh}
   function validRoom(c) { return typeof c === "string" && /^[A-HJ-NP-Z2-9]{4}$/.test(c); }
 
   var api = { create: create, reduce: reduce, roomCode: roomCode, brokerOf: brokerOf, validRoom: validRoom, quizScore: quizScore,
-    T: { QUIZ_N: QUIZ_N, QUIZ_T: QUIZ_T, QUIZ_CD: QUIZ_CD, REVEAL: REVEAL, XOX_T: XOX_T, DUEL_PICK: DUEL_PICK, DUEL_T: DUEL_T, DUEL_WIN: DUEL_WIN, STALE: STALE } };
+    T: { TAS_T: TAS_T, QUIZ_N: QUIZ_N, QUIZ_T: QUIZ_T, QUIZ_CD: QUIZ_CD, REVEAL: REVEAL, XOX_T: XOX_T, DUEL_PICK: DUEL_PICK, DUEL_T: DUEL_T, DUEL_WIN: DUEL_WIN, STALE: STALE } };
   if (typeof module !== "undefined" && module.exports) module.exports = api; else root.O26ON = api;
 })(this);
 </script>
@@ -2181,10 +2639,11 @@ html.kb body{padding-bottom:60vh}
     var g = st.g;
     $("onLobby").hidden = !!g; $("onGame").hidden = !g;
     if (!g) { lobby(); return; }
-    if (g.m === "quiz") quiz(g); else if (g.m === "xox") xox(g); else duel(g);
-    var over = g.m === "xox" ? g.over : g.ph === "end";
+    $("onTas").hidden = g.m !== "tas";
+    if (g.m === "quiz") quiz(g); else if (g.m === "xox") xox(g); else if (g.m === "tas") tas(g); else duel(g);
+    var over = g.m === "xox" || g.m === "tas" ? g.over : g.ph === "end";
     $("onHostEnd").hidden = !host; $("onAgain").hidden = !over;
-    $("onStatus").textContent = { quiz: "Quiz", xox: "XOX", duel: "Düello" }[g.m] + " · " + st.order.length + " kişi";
+    $("onStatus").textContent = { quiz: "Quiz", xox: "XOX", duel: "Düello", tas: "Taş Taş" }[g.m] + " · " + st.order.length + " kişi";
   }
   function lobby() {
     formKey = "";
@@ -2206,9 +2665,27 @@ html.kb body{padding-bottom:60vh}
     }).join("");
     document.querySelectorAll("#onHostCtl [data-m]").forEach(function (b) { b.setAttribute("aria-selected", String(b.dataset.m === mode)); });
     $("onModeHelp").textContent = mode === "quiz" ? "Herkes aynı 10 soruya yarışır. Hızlı doğru cevap daha çok puan getirir (500–1000)."
+      : mode === "tas" ? "Oynayacak iki kişiyi seç. Futbolcu taşlarıyla Kelimelik: her hamle 2 dk, yanlış taşta sıra yanar. Diğerleri izler." + (st.order.length < 2 ? " Önce bir arkadaşının odaya katılmasını bekle." : "")
       : (mode === "xox" ? "Oynayacak iki kişiyi seç (dokun). Diğerleri canlı izler. Yanlış cevapta sıra geçer, hamle başına 45 sn." : "Oynayacak iki kişiyi seç. 10 saniyelik geri sayımda ikisi takım seçer, ilk doğru cevap turu alır, ilk 3 kazanır.") +
       (two && st.order.length < 2 ? " Önce bir arkadaşının odaya katılmasını bekle." : "");
     $("onGo").disabled = two && sel.length !== 2;
+  }
+
+  var tasView = null, tasSeq = -1;
+  function tas(g) {
+    var t = now(), k = g.p.indexOf(me);
+    if (!tasView) tasView = new window.O26TTV.TasView($("onTas"), {
+      onPlay: function (placed) { send({ a: "tp", placed: placed }); },
+      onSwap: function (tiles) { send({ a: "ts", tiles: tiles }); },
+      onPass: function () { send({ a: "tq" }); }
+    });
+    $("onTag").textContent = nm(g.p[0]) + " " + g.sc[0] + " – " + g.sc[1] + " " + nm(g.p[1]);
+    $("onClock").textContent = g.over ? "Bitti" : (g.p[g.turn] === me ? "Sıra sende" : nm(g.p[g.turn]) + " oynuyor") + " · " + secs(g.dl - t) + " sn";
+    stage("tas", "");
+    setForm(false, "tas");
+    if (st.seq !== tasSeq) { tasSeq = st.seq; tasView.update(g, { me: k, waitText: k < 0 ? "İzliyorsun." : nm(g.p[g.turn]) + " oynuyor…" }); }
+    var w = g.sc[0] > g.sc[1] ? 0 : g.sc[1] > g.sc[0] ? 1 : -1;
+    info("tas" + g.over, g.over ? "<h2 class='du-title on-final'>" + (w >= 0 ? "🏆 " + esc(nm(g.p[w])) + " kazandı " + g.sc[w] + "–" + g.sc[1 - w] : "Berabere " + g.sc[0] + "–" + g.sc[1]) + "</h2>" : "");
   }
 
   function setForm(show, key, forTxt, pass) {
