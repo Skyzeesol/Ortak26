@@ -1897,7 +1897,8 @@ html.kb body{padding-bottom:60vh}
    Kurucu (host) oda durumunu "s" konusuna kalıcı (retained) yayınlar; oyuncular hamlelerini "a" konusuna yollar. */
 (function (root) {
   "use strict";
-  var BROKERS = root.PASLA_BROKERS || ["wss://broker.hivemq.com:8884/mqtt", "wss://broker.emqx.io:8084/mqtt"];
+  // 443 portlu aktarıcı başta: okul/iş Wi-Fi'si ve bazı operatörler 8884/8084 gibi portları engelleyebiliyor
+  var BROKERS = root.PASLA_BROKERS || ["wss://mqtt.eclipseprojects.io:443/mqtt", "wss://broker.hivemq.com:8884/mqtt", "wss://broker.emqx.io:8084/mqtt"];
   var PREFIX = "pasla/v1/";
   var enc = new TextEncoder(), dec = new TextDecoder();
 
@@ -1959,83 +1960,123 @@ html.kb body{padding-bottom:60vh}
   function rid(n) { var s = ""; for (var i = 0; i < n; i++) s += "abcdefghijkmnpqrstuvwxyz23456789"[Math.floor(Math.random() * 32)]; return s; }
 
   /* Oda bağlantısı.
-     opts: {code?, host:bool, me, onState(st|null, why), onAction(act), onStatus(text)}
-     host=true ise kod üretilir; host=false ise koddaki aktarıcıya bağlanılır ve oda durumu beklenir. */
+     Kurucu odayı bütün aktarıcılarda birden açar (durumu hepsine yayınlar, hamleleri hepsinden dinler).
+     Katılan herkes bütün aktarıcıları aynı anda dener; odayı ilk gösteren aktarıcıda kalır.
+     Böylece bir ağ bir aktarıcıyı ya da portu engellese bile oyuncular başka aktarıcıdan buluşur.
+     opts: {code?, host:bool, me, onState(st|null, why), onAction(act), onStatus(text), onReconnect()} */
   function Room(opts) {
-    var c = null, code = opts.code, me = opts.me, closed = false, retry = 0, self = this, gotState = false;
-    function topics() { return { s: PREFIX + code + "/s", a: PREFIX + code + "/a" }; }
-    function make(url) {
-      var t = topics();
-      return new Mqtt(url, {
-        clientId: "pasla_" + rid(10),
+    var code = opts.code, me = opts.me, closed = false, self = this;
+    var conns = {};            // aktarıcı adresi -> bağlı istemci
+    var clientUrl = null;      // katılanın kullandığı aktarıcı
+    var lastState = null;
+    function T() { return { s: PREFIX + code + "/s", a: PREFIX + code + "/a" }; }
+    function make(url, onState) {
+      var t = T();
+      var m = new Mqtt(url, {
+        clientId: "pasla_" + rid(10), timeout: 8000,
         will: opts.host ? { topic: t.s, payload: "", retain: true } : { topic: t.a, payload: JSON.stringify({ a: "bye", id: me }) },
-        onMessage: function (topic, payload, retained) {
-          if (topic === t.s) {
-            if (opts.host) return;
-            if (!payload) { opts.onState(null, "lost"); return; }
+        onMessage: function (topic, payload) {
+          if (topic === t.s && !opts.host) {
+            if (!payload) { if (url === clientUrl) opts.onState(null, "lost"); return; }
             var st; try { st = JSON.parse(payload); } catch (e) { return; }
-            gotState = true; opts.onState(st);
+            if (onState) onState(st, url);
           } else if (topic === t.a && opts.host) {
             var act; try { act = JSON.parse(payload); } catch (e) { return; }
             if (act && typeof act.id === "string") opts.onAction(act);
           }
         },
-        onClose: function () { if (!closed) reconnect(); }
+        onClose: function () { if (conns[url] === m) delete conns[url]; if (!closed) reconnect(url, 0); }
       });
+      return m;
     }
-    function attach(conn) {
-      c = conn; var t = topics();
-      if (opts.host) c.subscribe(t.a); else c.subscribe(t.s);
-    }
-    function reconnect() {
+    function hook(url, m) { conns[url] = m; m.subscribe(opts.host ? T().a : T().s); }
+    function anyUp() { for (var u in conns) if (conns[u].ready()) return true; return false; }
+    function reconnect(url, n) {
       if (closed) return;
-      opts.onStatus && opts.onStatus("Bağlantı koptu, yeniden bağlanılıyor…");
-      var url = BROKERS[root.O26ON.brokerOf(code, BROKERS.length)];
+      if (!opts.host && url !== clientUrl) return;
+      if (!anyUp()) opts.onStatus && opts.onStatus("Bağlantı koptu, yeniden bağlanılıyor…");
       setTimeout(function () {
         if (closed) return;
-        make(url).connect().then(function (conn) {
-          retry = 0; attach(conn); opts.onStatus && opts.onStatus("");
+        // katılan: aynı aktarıcı birkaç kez olmazsa sıradakini dene
+        var target = opts.host ? url : (n >= 3 ? BROKERS[(BROKERS.indexOf(url) + 1) % BROKERS.length] : url);
+        if (!opts.host) clientUrl = target;
+        var m = make(target, function (st) { lastState = st; opts.onState(st); });
+        m.connect().then(function () {
+          hook(target, m); opts.onStatus && opts.onStatus("");
+          if (opts.host && lastState) m.publish(T().s, JSON.stringify(lastState), true);
           if (opts.onReconnect) opts.onReconnect();
-        }, function () { retry++; if (retry < 40) reconnect(); else opts.onStatus && opts.onStatus("Bağlantı kurulamadı. İnternetini kontrol edip odaya yeniden katıl."); });
-      }, Math.min(1000 + retry * 1000, 5000));
+        }, function () {
+          if (n < 60) reconnect(target, n + 1);
+          else if (!anyUp()) opts.onStatus && opts.onStatus("Bağlantı kurulamadı. İnternetini kontrol edip odaya yeniden katıl.");
+        });
+      }, Math.min(1000 + n * 1000, 5000));
     }
 
     this.open = function () {
       if (opts.host) {
-        // sırayla aktarıcıları dene, bağlanılanın numarasını koda göm
-        var i = 0;
+        code = root.O26ON.roomCode(0, 1);
         return new Promise(function (res, rej) {
-          (function next() {
-            if (i >= BROKERS.length) { rej(new Error("Aktarıcılara ulaşılamadı. İnternetini kontrol et.")); return; }
-            var bi = i++; code = root.O26ON.roomCode(bi, BROKERS.length);
-            make(BROKERS[bi]).connect().then(function (conn) { attach(conn); res(code); }, next);
-          })();
+          var left = BROKERS.length, ok = 0;
+          BROKERS.forEach(function (url) {
+            var m = make(url);
+            m.connect().then(function () {
+              hook(url, m); ok++;
+              if (lastState) m.publish(T().s, JSON.stringify(lastState), true);
+              if (ok === 1) res(code);
+            }, function () {}).then(function () {
+              if (--left === 0 && !ok) rej(new Error("Aktarıcılara ulaşılamadı. İnternetini kontrol et."));
+              else if (left === 0) { /* bağlanamayanları arka planda yeniden dene */ BROKERS.forEach(function (u) { if (!conns[u]) reconnect(u, 2); }); }
+            });
+          });
         });
       }
-      var url = BROKERS[root.O26ON.brokerOf(code, BROKERS.length)];
-      return make(url).connect().then(function (conn) {
-        attach(conn);
-        return new Promise(function (res, rej) {
-          var waited = 0, iv = setInterval(function () {
-            waited += 200;
-            if (gotState) { clearInterval(iv); res(code); }
-            else if (waited >= 6000) { clearInterval(iv); closed = true; conn.end(); rej(new Error("Bu kodla açık bir oda bulunamadı.")); }
-          }, 200);
+      return new Promise(function (res, rej) {
+        var pending = BROKERS.length, found = false, trying = [], timer;
+        function finish() {
+          if (found) return; found = true; clearTimeout(timer);
+          trying.forEach(function (x) { if (x.url !== clientUrl) { try { x.m.end(); } catch (e) {} } });
+          res(code);
+        }
+        timer = setTimeout(function () {
+          if (found) return;
+          trying.forEach(function (x) { try { x.m.end(); } catch (e) {} });
+          rej(new Error(pending === BROKERS.length || !trying.some(function (x) { return x.up; }) ? "Aktarıcılara bağlanılamadı. İnternetini kontrol et." : "Bu kodla açık bir oda bulunamadı."));
+        }, 9000);
+        BROKERS.forEach(function (url) {
+          var x = { url: url, up: false };
+          x.m = make(url, function (st, u) {
+            if (closed) return;
+            if (!found) { clientUrl = u; conns[u] = x.m; lastState = st; opts.onState(st); finish(); return; }
+            if (u === clientUrl) { lastState = st; opts.onState(st); }
+          });
+          trying.push(x);
+          x.m.connect().then(function () { x.up = true; x.m.subscribe(T().s); }, function () {}).then(function () { pending--; });
         });
-      }, function () { throw new Error("Aktarıcıya bağlanılamadı. İnternetini kontrol et."); });
+      });
     };
-    this.send = function (act) { act.id = me; return c && c.publish(topics().a, JSON.stringify(act), false); };
-    this.publishState = function (st) { return c && c.publish(topics().s, JSON.stringify(st), true); };
+    this.send = function (act) {
+      act.id = me;
+      var m = conns[clientUrl];
+      return !!(m && m.publish(T().a, JSON.stringify(act), false));
+    };
+    this.publishState = function (st) {
+      lastState = st; var p = JSON.stringify(st), any = false;
+      for (var u in conns) any = conns[u].publish(T().s, p, true) || any;
+      return any;
+    };
     this.close = function (finalState) {
       closed = true;
-      if (c) {
-        if (opts.host) c.publish(topics().s, finalState ? JSON.stringify(finalState) : "", true);
-        else c.publish(topics().a, JSON.stringify({ a: "bye", id: me }), false);
-        var cc = c; setTimeout(function () { cc.end(); }, 300);
-      }
+      var list = []; for (var u in conns) list.push(conns[u]);
+      list.forEach(function (m) {
+        if (opts.host) m.publish(T().s, finalState ? JSON.stringify(finalState) : "", true);
+        else m.publish(T().a, JSON.stringify({ a: "bye", id: me }), false);
+        setTimeout(function () { m.end(); }, 300);
+      });
+      conns = {};
     };
     this.code = function () { return code; };
-    this.connected = function () { return !!(c && c.ready()); };
+    this.connected = anyUp;
+    this.brokers = function () { return Object.keys(conns); };
   }
 
   root.PaslaNet = { Mqtt: Mqtt, Room: Room, BROKERS: BROKERS, rid: rid };
